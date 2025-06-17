@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+vboxeFront/node_modules/
+
+# Build outputs
+vboxeFront/dist/
+backVBoxe/target/
+
+# Environment files
+.env
+*.env
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+.docker
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Maven
+target/
+
+# Angular
+vboxeFront/.angular/cache
