@@ -1,0 +1,9 @@
+<div class="indicator-storage">
+  <div class="title">
+    {{ 'INDICATOR_STORAGE.TITLE' | translate }}
+  </div>
+  <div class="indicator">
+    <div class="percent" [style.width]="getPercent + '%'" [ngClass]="{'red': getPercent >= 90, 'orange': 75 <= getPercent && getPercent < 90 }"></div>
+  </div>
+  <div class="info" [innerHTML]="'INDICATOR_STORAGE.INFO' | translate : {total: getTotal, used: getUsed}"></div>
+</div>

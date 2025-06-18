@@ -1,0 +1,25 @@
+<div class="add-folder-content" >
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="icon">
+        <mat-icon svgIcon="lockDig"></mat-icon>  
+    </div>
+      <div class="title">
+        {{ data.title }}
+      </div>
+      <div>
+        <p style="text-align: center; font-size: medium;font-family: montserrat;">Choisissez un code de 6 chiffres</p>
+      </div>
+      <div class="form">
+        Code: <input matInput formControlName="code" class="folder-name" type="password" required minlength="6" maxlength="6" (keypress)="validateInput($event)">   
+    </div>
+      <div class="form">
+        Confirmer Code: <input matInput formControlName="confirmCode"  class="folder-name" type="password" required minlength="6" maxlength="6"  (keypress)="validateInput($event)"> 
+      </div>
+      <div class="buttons">
+        <button  type="submit" [disabled]="!formGroup.valid" class="add" (click)="close(true)">Confirmer</button>
+        <button class="cancel" (click)="close(false)">Annuler</button>
+      </div>
+   
+    </form>
+
+  </div> 

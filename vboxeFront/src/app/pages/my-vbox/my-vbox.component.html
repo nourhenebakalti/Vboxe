@@ -1,0 +1,354 @@
+<div
+  class="my-vbox"
+  (dragover)="onDragOverToApp($event)"
+  (drop)="onDropToApp($event)"
+>
+  <app-header [pageTitle]="'MY_DOCUMENTS'" [withSearch]="true"></app-header>
+  <div class="my-vbox-content">
+    <div class="menu">
+      <div
+        class="menu-content-item"
+        *ngFor="let menu of subMenus"
+        [routerLink]="['/', 'page', 'my_vbox', menu.link]"
+        routerLinkActive="selected"
+      >
+        <mat-icon [svgIcon]="menu.picto"></mat-icon>
+        <span>{{ "SUB_MENU." + menu.content | translate }}</span>
+      </div>
+
+      <div class="devider"></div>
+      <div class="info" *ngIf="selectedFile || selectedFolder">
+        <div class="info-title">Détails du document</div>
+        <div class="nom">
+          <ng-container *ngIf="selectedFolder">
+            <mat-icon svgIcon="folder-icon"></mat-icon>
+            {{ selectedFolder.folderName }}
+          </ng-container>
+
+          <ng-container *ngIf="selectedFile">
+            <mat-icon [svgIcon]="getFileIcon(selectedFile.name)"></mat-icon>
+
+            <div class="nom-txt">
+              {{ selectedFile.name }}
+            </div>
+          </ng-container>
+        </div>
+        <div class="size-file">
+          <mat-icon
+            [svgIcon]="selectedFolder.protect ? 'unlock' : 'unlock-doc'"
+            *ngIf="selectedFolder"
+            class="info-lock"
+          ></mat-icon>
+          <mat-icon
+            [svgIcon]="selectedFile.protect ? 'unlock' : 'unlock-doc'"
+            *ngIf="selectedFile"
+            class="info-lock"
+          ></mat-icon>
+          <span *ngIf="selectedFile">{{ formatBytes(selectedFile.size) }}</span>
+        </div>
+
+        <div class="info-title margin-top-title">Propriétaire</div>
+        <div class="nom" *ngIf="page === 'files' && api.profile">
+          <div
+            class="compte"
+            [style.background-image]="
+              api.profile.profilePicture
+                ? 'url(data:image/png;base64,' +
+                  api.profile.profilePicture +
+                  ')'
+                : ''
+            "
+          >
+            <ng-container *ngIf="!api.profile.profilePicture">{{
+              api.profile.name.substring(0, 1).toUpperCase()
+            }}</ng-container>
+          </div>
+          {{ api.profile.name }}
+        </div>
+        <div class="nom" *ngIf="page === 'share'">
+          <ng-container *ngIf="selectedDocumentuserInfo">
+            <div
+              class="compte"
+              [style.background-image]="
+                selectedDocumentuserInfo.profilePicture
+                  ? 'url(data:image/png;base64,' +
+                    selectedDocumentuserInfo.profilePicture.data +
+                    ')'
+                  : ''
+              "
+            >
+              <ng-container *ngIf="!selectedDocumentuserInfo.profilePicture">{{
+                selectedDocumentuserInfo.name?.substring(0, 1).toUpperCase()
+              }}</ng-container>
+              <div
+                class="status"
+                [ngClass]="getStatusUser(selectedDocumentuserInfo)"
+              ></div>
+            </div>
+            {{ selectedDocumentuserInfo.name }}
+          </ng-container>
+        </div>
+        <ng-container
+          *ngIf="
+            page === 'files' &&
+            selectedDocumentuserShared &&
+            selectedDocumentuserShared.length > 0
+          "
+        >
+          <div class="info-title margin-top-title">Partagé avec</div>
+          <div class="nom user-share">
+            <div
+              class="user-item"
+              *ngFor="
+                let selectedDocumentuserSharedUser of selectedDocumentuserShared
+              "
+            >
+              <div
+                class="compte"
+                [style.background-image]="
+                  selectedDocumentuserSharedUser.user[0].profilePicture
+                    ? 'url(data:image/png;base64,' +
+                      selectedDocumentuserSharedUser.user[0].profilePicture
+                        .data +
+                      ')'
+                    : ''
+                "
+              >
+                <ng-container
+                  *ngIf="!selectedDocumentuserSharedUser.user[0].profilePicture"
+                  >{{
+                    selectedDocumentuserSharedUser.user[0].name
+                      .substring(0, 1)
+                      .toUpperCase()
+                  }}</ng-container
+                >
+                <div
+                  class="status"
+                  [ngClass]="
+                    getStatusUser(selectedDocumentuserSharedUser.user[0])
+                  "
+                ></div>
+              </div>
+              {{ selectedDocumentuserSharedUser.user[0].name }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div
+      *ngIf="page === 'files' || this.page === 'share'"
+      class="content"
+      (contextmenu)="onRightClick($event)"
+    >
+      <button
+        class="preview-folder"
+        *ngIf="content?.currentFolder"
+        (click)="dbClickFolder(content.currentFolder?.folderParentId)"
+      >
+        <mat-icon>reply</mat-icon>
+      </button>
+      <div class="folder-name" *ngIf="content?.currentFolder">
+        {{ content.currentFolder?.folderName }}
+      </div>
+
+     
+            <!-- (dragstart)="onDragStartFromApp($event, 'Folder', folder._id)"
+            (dragend)="onDragEndFromApp($event)" -->
+
+      <div class="container" >
+        <ng-container *ngIf="content" #canvas>
+          <div 
+            class="item"
+            [ngClass]="{ selected: selectedFolder === folder }"
+            *ngFor="let folder of content?.folders; let i = index"
+            (click)="clickFolder(folder)"
+            [id]="'fo-' + folder._id"
+            (dblclick)="dbClickFolder(folder._id)"
+            (contextmenu)="clickFolder(folder)"
+            (dragstart)="onDragStartFromApp( $event)" 
+            (dragend)="onDragEndFromApp($event)"
+            (dragover)="onDragOver($event)" 
+            (drop)="onDrop($event, folder._id)" 
+            draggable="true"
+          >
+            <div class="icon-content">
+              <mat-icon svgIcon="folder-icon"></mat-icon>
+              <div class="unlock" *ngIf="folder.protect">
+                <mat-icon svgIcon="unlock2"></mat-icon>
+              </div>
+              <div
+                class="shared-indice"
+                *ngIf="folder.share && folder.share.length > 0"
+                (click)="toggleShared()"
+              >
+                <mat-icon
+                  *ngIf="!isSharedClicked"
+                  svgIcon="file-share"
+                ></mat-icon>
+                <span
+                  style="margin-top: 54px; margin-right: 18px; top: -50px"
+                  *ngIf="isSharedClicked"
+                  >Partagé</span
+                >
+              </div>
+            </div>
+            <div class="item-name">{{ folder.folderName }}</div>
+          </div>
+          <!--(dragover)="onDropOver($event,'Folder',folder._id)"   (drop)="onDrop($event,'Folder',folder._id)" (dragstart)="onDragStart(folder._id,'Folder')" draggable="true"-->
+
+        
+            <!-- (dragstart)="onDragStartFromApp($event, 'File', file._id)"
+            (dragend)="onDragEndFromApp($event)" -->
+
+          <div #element
+          [id]="'fi-' + file._id" 
+
+            class="item"
+            [ngClass]="{ selected: selectedFile === file }"
+            *ngFor="let file of content?.files; let i = index"
+            (click)="clickFile(file)"
+            (dblclick)="dbClickFile(file._id, file.name)"
+            (contextmenu)="clickFile(file)"
+            (dragstart)="onDragStartFromApp( $event)" 
+            (dragend)="onDragEndFromApp($event)"
+            (dragover)="onDragOver($event)" 
+           
+            draggable="true"
+          >
+            <!-- (dragover)="onDropOver($event,'File',file._id)" (drop)="onDrop($event,'File',file._id)" (dragstart)="onDragStart(file._id,'File')" draggable="true" -->
+            <div class="icon-content">
+              <mat-icon [svgIcon]="getFileIcon(file.name)"></mat-icon>
+              <div class="unlock for_file" *ngIf="file.protect">
+                <mat-icon svgIcon="unlock2"></mat-icon>
+              </div>
+
+              <div
+                class="shared-indice"
+                *ngIf="file.share && file.share.length > 0"
+                (click)="toggleShared()"
+              >
+                <mat-icon
+                  *ngIf="!isSharedClicked"
+                  svgIcon="file-share"
+                ></mat-icon>
+                <span
+                  style="margin-top: 54px; margin-right: 18px; top: -50px"
+                  *ngIf="isSharedClicked"
+                  >Partagé</span
+                >
+              </div>
+            </div>
+            <div class="item-name">{{ file.name }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div
+    #menu
+    style="visibility: hidden; opacity: 0; position: fixed; z-index: 1000"
+    [style.left]="menuTopLeftPosition.x"
+    [style.top]="menuTopLeftPosition.y"
+    class="menu"
+    *ngIf="selectedFile || selectedFolder || page === 'files'"
+  >
+    <div
+      class="menu-item"
+      (click)="redirectToPdfViewer(selectedFile?._id)"
+      *ngIf="
+        (page === 'files' || page === 'share') &&
+        (selectedFile || selectedFolder)
+      "
+    >
+      <mat-icon svgIcon="visibility"></mat-icon> Visualiser
+    </div>
+
+    <div
+      class="menu-item"
+      (click)="share()"
+      *ngIf="page === 'files' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-share"></mat-icon> Partager
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteShare()"
+      *ngIf="page === 'share' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-share"></mat-icon> Supprimer le partage
+    </div>
+    <div
+      class="menu-item"
+      (click)="download()"
+      *ngIf="selectedFile || selectedFolder"
+    >
+      <mat-icon svgIcon="file-download"></mat-icon> Télécharger
+    </div>
+    <div
+      class="menu-item"
+      (click)="addForlder()"
+      *ngIf="page === 'files' && !selectedFile"
+    >
+      <span class="material-icons-outlined menu-icon"> create_new_folder </span>
+      Ajouter un Dossier
+    </div>
+    <div
+      class="menu-item"
+      (click)="addFiles()"
+      *ngIf="page === 'files' && !selectedFile"
+    >
+      <span class="material-icons-outlined menu-icon"> note_add </span> Ajouter
+      des Fichiers
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteFiles()"
+      *ngIf="
+        (page === 'files' || page === 'share') &&
+        (selectedFile || selectedFolder)
+      "
+    >
+      <mat-icon svgIcon="file-trash-2" class="trash2"></mat-icon> Supprimer
+    </div>
+    <div
+      class="menu-item"
+      (click)="renameFiles()"
+      *ngIf="
+        (page === 'files' || page === 'share') &&
+        (selectedFile || selectedFolder)
+      "
+    >
+      <mat-icon svgIcon="rename" class="trash2"></mat-icon> Renommer
+    </div>
+    <div
+      class="menu-item"
+      (click)="moveFiles()"
+      *ngIf="page === 'files' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-move"></mat-icon> Déplacer
+    </div>
+    <div
+      class="menu-item"
+      (click)="protect()"
+      *ngIf="
+        page === 'files' &&
+        ((selectedFile && !selectedFile.protect) ||
+          (selectedFolder && !selectedFolder.protect))
+      "
+    >
+      <mat-icon svgIcon="unlock"></mat-icon> Protéger
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteProtect()"
+      *ngIf="
+        page === 'files' &&
+        ((selectedFile && selectedFile.protect) ||
+          (selectedFolder && selectedFolder.protect))
+      "
+    >
+      <mat-icon svgIcon="unlock-doc"></mat-icon> Arrêter la protéction
+    </div>
+  </div>
+</div>

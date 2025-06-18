@@ -1,0 +1,22 @@
+
+.example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
+  }
+  .right { display: flex;
+    justify-content: flex-end;
+    text-align: right; 
+
+}
+.mat-card{box-shadow: none;}
+.email{
+  font-size:smaller;
+  font-family: gray ;
+  color: grey;
+
+}
+
+

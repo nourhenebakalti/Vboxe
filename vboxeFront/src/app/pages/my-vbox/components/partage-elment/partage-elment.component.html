@@ -1,0 +1,66 @@
+<div class="users-content">
+  <div class="container flex flex-wrap col-md-12">
+    <table *ngIf="users && users.length > 0">
+      <thead>
+        <tr>
+          <th>
+            <input
+              type="checkbox"
+              (change)="selectAll($event)"
+              [checked]="areAllSelected()"
+            />
+          </th>
+          <th width="25%">Nom d’utilisateur</th>
+          <th>E-mail</th>
+          <th>Rôle</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let friend of users">
+          <td><input type="checkbox" [(ngModel)]="friend.selected" /></td>
+          <td class="name-pic-profile-friend">
+            <div
+              class="pic"
+              [style.background-image]="
+                profilePicture
+                  ? 'url(data:image/png;base64,' + profilePicture(friend) + ')'
+                  : ''
+              "
+            >
+              <ng-container *ngIf="!profilePicture(friend)">{{
+                abrefName(friend)
+              }}</ng-container>
+            </div>
+            {{ friend.name }}
+          </td>
+          <td>{{ friend.username }}</td>
+          <td>{{ "STATUS." + friend.role | translate }}</td>
+          <td>{{ friend.status ? "Actif" : "Hors Ligne" }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <mat-icon
+        (click)="toggleShared()"
+        style="cursor: pointer; margin-right: 20px"
+        *ngIf="!isSharedClicked"
+        svgIcon="file-share"
+      ></mat-icon>
+      <button
+        style="margin: 10px"
+        class="btn btn-primary"
+        (click)="submit()"
+        [disabled]="!hasSelectedUsers()"
+        *ngIf="isSharedClicked"
+      >
+        Partager
+      </button>
+      <button class="btn btn-secondary" (click)="cancel()">Annuler</button>
+    </div>
+    <div class="no_friends" *ngIf="!users || users.length === 0">
+      {{ "USERS_PAGE.NO_FREINDS" | translate }}
+    </div>
+  </div>
+</div>

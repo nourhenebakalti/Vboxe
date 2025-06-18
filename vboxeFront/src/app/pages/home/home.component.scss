@@ -1,0 +1,154 @@
+@import 'src/themes/theme.scss';
+
+.home-container {
+    background-color: $--bg-color ;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+
+    .content {
+        width: 75%;
+
+        .header {
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+
+            .connexion {
+                .connexion-input {
+                    height: 38px;
+                    width: 140px;
+                    margin-right: 20px;
+                    border: unset !important;
+                    padding: 0 11px;
+                    border-radius: 3px;
+                }
+
+                .btn {
+                    background-color: $--btn-back;
+                    color: $--btn-text-color;
+                    margin-left: 7px;
+                    width: 140px;
+                }
+            }
+
+
+            .logo {
+                display: flex;
+                align-items: center;
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 1.6rem;
+                margin-left: -12px;
+            }
+
+        }
+
+        .middle {
+
+            display: flex;
+            justify-content: space-between;
+
+            .left-bloc {
+                .slogan-1 {
+                    font-family: 'Inter', sans-serif;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 2.2rem;
+                    margin-bottom: 5px;
+                    color: $--blue-dark;
+                }
+
+                .slogan-2 {
+                    font-family: 'Inter', sans-serif;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 2.2rem;
+                    color: $--blue-dark;
+                }
+
+                .image {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    width: 511px;
+                    height: 411px;
+                    position: relative;
+                    margin-top: 30px;
+
+                    .image_back {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 0;
+                        width: 492px;
+                    }
+
+                    .image_front {
+                        z-index: 1;
+                        width: 404px;
+                    }
+                }
+            }
+
+            .sign-up-content {
+                background-color: $--blue;
+                width: 380px;
+                height: 505px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 33px;
+
+                .create-account {
+                    color: white;
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 1.6rem;
+                    margin-bottom: 40px;
+                }
+                input{
+                    background-color: white;
+                }
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 70%;
+
+                    *{
+                        margin-bottom: 25px;
+                    }
+                    .sign-up-input {
+                        height: 38px;
+                        border: unset !important;
+                        padding: 0 11px;
+                        width: 100%;
+                    }
+
+                    .error {
+                        border: solid 2px red !important;
+                    }
+                    
+                    .btn {
+                        background-color: $--btn-back;
+                        color: $--btn-text-color;
+                        width: 110%;
+
+                    }
+                }
+
+            }
+        }
+    }
+
+}

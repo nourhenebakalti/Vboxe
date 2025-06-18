@@ -1,0 +1,34 @@
+<div class="add-folder-content">
+  <form [formGroup]="formGroup">
+    <div class="icon">
+      <mat-icon svgIcon="file-move"></mat-icon>
+    </div>
+    <div class="title">
+      {{ data.title }}
+    </div>
+    <div class="form">
+      Emplacement actuel
+      <input
+        mat-input
+        formControlName="nameFolder"
+        type="text"
+        class="folder-name"
+        type="text"
+      />
+    </div>
+    <div class="form">
+      Nouvel Emplacement
+      <mat-form-field>
+        <mat-select [formControl]="toppings">
+          
+          <mat-option *ngFor="let topping of toppingList" [value]="topping.folderId">{{ topping.folderName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <div class="buttons">
+      <button class="add" (click)="close(true)">Déplacer</button>
+      <button class="cancel" (click)="close(false)">Annuler</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,98 @@
+<div class="home-container">
+  <div class="content">
+    <div class="header">
+      <div class="logo"><img src="assets/images/logo.svg" /> Vboxe</div>
+      <div class="connexion">
+        <form [formGroup]="loginForm" (submit)="login()">
+          <input
+            formControlName="email"
+            class="connexion-input"
+            [placeholder]="'HOME_PAGE.E_MAIL' | translate"
+          />
+          <input
+            formControlName="password"
+            type="password"
+            class="connexion-input"
+            [placeholder]="'HOME_PAGE.PASSWORD' | translate"
+          />
+          <button mat-flat-button class="btn" type="submit">
+            {{ "HOME_PAGE.CONNEXION" | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="middle">
+      <div class="left-bloc">
+        <div class="slogan-1">{{ "HOME_PAGE.SLOGAN_1" | translate }}</div>
+        <div class="slogan-2">{{ "HOME_PAGE.SLOGAN_2" | translate }}</div>
+        <div class="image">
+          <img src="assets/images/home_image_back.svg" class="image_back" />
+          <img src="assets/images/home_image_front.svg" class="image_front" />
+        </div>
+      </div>
+      <div class="sign-up-content">
+        <div class="create-account">
+          {{ "HOME_PAGE.CREATE_ACCOUNT" | translate }}
+        </div>
+        <form [formGroup]="signUpForm" (submit)="registerUser()">
+          <input
+            matInput
+            formControlName="email"
+            [ngClass]="{
+              error: signUpSubmitted && signUpForm.controls.email.invalid
+            }"
+            type="email"
+            class="sign-up-input"
+            [placeholder]="'HOME_PAGE.E_MAIL' | translate"
+          />
+          <input
+            matInput
+            formControlName="name"
+            [ngClass]="{
+              error: signUpSubmitted && signUpForm.controls.name.invalid
+            }"
+            type="text"
+            class="sign-up-input"
+            [placeholder]="'HOME_PAGE.USER_NAME' | translate"
+          />
+          <input
+            matInput
+            formControlName="mobileNumber"
+            [ngClass]="{
+              error: signUpSubmitted && signUpForm.controls.mobileNumber.invalid
+            }"
+            type="tel"
+            class="sign-up-input"
+            [placeholder]="'HOME_PAGE.Mobile_Number' | translate"
+          />
+
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            class="sign-up-input"
+            [ngClass]="{
+              error: signUpSubmitted && signUpForm.controls.password.invalid
+            }"
+            [placeholder]="'HOME_PAGE.PASSWORD' | translate"
+          />
+          <input
+            matInput
+            formControlName="confirmPassword"
+            type="password"
+            class="sign-up-input"
+            [ngClass]="{
+              error:
+                signUpSubmitted && signUpForm.controls.confirmPassword.invalid
+            }"
+            [placeholder]="'HOME_PAGE.CONFIRM_PASSWORD' | translate"
+          />
+          <button mat-flat-button class="btn" type="submit">
+            {{ "HOME_PAGE.INSCRIPTION" | translate }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

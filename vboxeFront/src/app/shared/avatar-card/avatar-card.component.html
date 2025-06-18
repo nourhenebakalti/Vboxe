@@ -1,0 +1,80 @@
+<mat-card class="user-invitation-container">
+  <mat-card-header class="user-invitation-header">
+    <div mat-card-avatar class="example-header-image">
+      <img    [src]="notifData?.userImage ? 'data:image/png;base64,' + notifData.userImage : '/assets/images/logo.svg'"  alt="Notification Icon"  style="width: 70px; height: 70px; border-radius: 50%; position:relative; bottom:18px ;  " />
+    </div>
+    <div class="header-content">
+      <div class="user-invitation-icon-date">
+        <div class="user-invitation-icon-date-content">
+          <mat-card-subtitle class="user-invitation-date">
+            <mat-icon>calendar_today</mat-icon>
+            {{
+              notifData?.details?.currentDate | date : "dd/MM/yyyy"
+            }}</mat-card-subtitle
+          >
+        </div>
+        <div class="user-invitation-icon-date-content">
+          <mat-card-subtitle class="user-invitation-date">
+            <mat-icon>schedule</mat-icon>
+            {{
+              notifData?.details?.currentDate | date : "hh:mm"
+            }}</mat-card-subtitle
+          >
+        </div>
+        <div class="user-invitation-videocam">
+          <button
+            class="user-invitation-cam"
+            mat-mini-fab
+            (click)="onStream($event)"
+          >
+            <mat-icon>videocam</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div>
+        <mat-card-title class="user-invitation-name"
+          >{{ notifData?.details?.titleEvent }}
+        </mat-card-title>
+      </div>
+      <div class="user-invitation-action">
+        <button
+          *ngIf="notifData?.details?.proposedDate != null"
+          class="block-dates-btn"
+        >
+          Unconfirmed events
+        </button>
+        <button
+        
+          *ngIf="
+            notifData?.details?.confirmed &&
+            notifData?.details?.proposedDate == null
+          "
+          class="block-dates-btn-vert"
+        >
+          Confirmed events
+        </button>
+      </div>
+      <mat-card-actions
+        class="user-invitation-action"
+        *ngIf="userId == notifData.user && !notifData?.details?.confirmed"
+      >
+        <button
+          class="user-invitation-action-desc-1"
+          mat-flat-button
+          (click)="onConfirm()"
+          style="margin-inline: 5px"
+        >
+          Confirmer
+        </button>
+        <button
+          class="user-invitation-action-desc"
+          mat-flat-button
+          (click)="onChange()"
+          style="margin-inline: 5px"
+        >
+          Proposez autre date
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card-header>
+</mat-card>

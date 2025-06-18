@@ -1,0 +1,126 @@
+<!-- <div cdkDrag cdkDragRootElement=".cdk-overlay-pane"> -->
+<div>
+  <div style="position: relative">
+    <span style="position: absolute; top: -40px; right: -10px">
+      <button *ngIf="showButtom" mat-icon-button (click)="editEvent(data)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="showButtom" mat-icon-button (click)="deleteEvent(data)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close color="primary">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
+  </div>
+  <div style="margin-top: 40px">
+    <h1 mat-dialog-title>
+      <mat-icon>event</mat-icon>
+      <!-- Icône pour représenter un événement -->
+      {{ data.title }}
+    </h1>
+    <div>
+      <mat-icon>person</mat-icon>
+      <!-- Icône pour l'heure de début -->
+      <strong>Initiator : </strong>
+      {{ data.initiatorName }}
+    </div>
+    <div mat-dialog-content class="dialog-content">
+      <div>
+        <mat-icon>access_time</mat-icon>
+        <!-- Icône pour l'heure de début -->
+        <strong>Date:</strong>
+        {{ data.start | date : "dd/MM/yyyy, HH:mm" }} -
+        {{ data.end | date : "HH:mm" }}
+      </div>
+
+      <div>
+        <mat-icon>people</mat-icon>
+        <!-- Icône pour les invités -->
+        <strong>Guests: ( {{ listNames.length }} )</strong>
+        <ng-container>
+          <mat-chip-set>
+            <mat-chip *ngFor="let guest of listNames">
+              {{ guest }}
+            </mat-chip>
+          </mat-chip-set>
+        </ng-container>
+      </div>
+      <div>
+        <mat-icon>description</mat-icon>
+        <!-- Icône pour la description -->
+        <strong>Description:</strong>
+        <p>{{ data.description }}</p>
+      </div>
+      <div *ngIf="showButtom">
+        <!-- <h5></h5> -->
+        <h6>Details</h6>
+        <table *ngIf="data.confirmedGuestsList || data.unconfirmedGuestsList">
+          <thead>
+            <tr>
+              <th class="confirmed">Confirmer</th>
+              <th class="not-confirmed">Non confirmé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- Colonne pour invités confirmés -->
+              <td>
+                <ul>
+                  <li *ngFor="let detailsInfo of data.confirmedGuestsList">
+                    {{ detailsInfo.name }}
+                  </li>
+                </ul>
+              </td>
+
+              <!-- Colonne pour invités non confirmés -->
+              <td>
+                <ul>
+                  <li *ngFor="let detailsInfo of data.unconfirmedGuestsList">
+                    {{ detailsInfo.name }}
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <table *ngIf="data.confirmedGuestsList || data.unconfirmedGuestsList">
+          <tr>
+            <th class="confirmed">Confirmer</th>
+            <th class="not-confirmed">Non confirme</th>
+          </tr>
+          <tr>
+            <td *ngFor="let detailsInfo of data.confirmedGuestsList">
+              {{ detailsInfo.name }}
+            </td>
+          </tr>
+          <tr>
+            <td *ngFor="let detailsInfo of data.unconfirmedGuestsList">
+              {{ detailsInfo.name }}
+            </td>
+          </tr>
+        </table> -->
+        <!-- <mat-expansion-panel
+          (opened)="onPanelOpened()"
+          (closed)="onPanelClosed()"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Details </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ng-container *ngFor="let detail of data.detailsList">
+            <li>
+              {{ detail.name }}
+              <span *ngIf="detail.confirmed && !detail.proposedDate">
+                has confirmed attendance.
+              </span>
+              <span *ngIf="detail.confirmed && detail.proposedDate">
+                has proposed another date:
+                {{ detail.proposedDate | date : "dd/MM/yyyy, HH:mm" }}.
+              </span>
+            </li>
+          </ng-container>
+        </mat-expansion-panel> -->
+      </div>
+    </div>
+  </div>
+</div>

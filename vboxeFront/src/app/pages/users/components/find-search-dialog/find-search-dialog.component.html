@@ -1,0 +1,45 @@
+<div class="add-friend-content">
+  <form [formGroup]="formGroup" (submit)="submit()">
+    <div class="icon">
+      <mat-icon svgIcon="user-plus"></mat-icon>
+    </div>
+    <div class="title">
+      <span *ngIf="data.type === 'friends'" >Ajouter un ami</span>
+      <ng-container *ngIf="data.type === 'share'" >
+        <span *ngIf="data.file" >
+          Partager le fichier
+          <br>
+          {{data.file.name}}
+        </span>
+        <span *ngIf="data.folder" >
+          Partager le dossier
+          <br>
+          {{data.folder.folderName}}
+        </span>
+      </ng-container>
+    </div>
+    <div class="form">
+      <ng-container *ngIf="!idSelectedUser; else selectedUser" >
+
+        Nom: <input mat-input formControlName="users" type="text" class="friend-name" [matAutocomplete]="auto" (keyup)="searchFriends()" >
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getOptionText" (optionSelected)="saveId($event)">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option">
+            {{option.name}} - {{ option.username }}
+          </mat-option>
+        </mat-autocomplete>
+      </ng-container>
+
+      <ng-template #selectedUser>
+        <div class="user">
+         <div class="user-name"> {{ formGroup.get('users').value.name }} - {{ formGroup.get('users').value.username }} </div><mat-icon svgIcon="user-delete" (click)="userDelete()"> </mat-icon>
+        </div>
+      </ng-template>
+
+    </div>
+    <div class="buttons">
+      <button class="add" type="submit">Ajouter</button>
+      <button class="cancel" type="button" (click)="close(false)">Annuler</button>
+    </div>
+ 
+  </form>
+ </div>

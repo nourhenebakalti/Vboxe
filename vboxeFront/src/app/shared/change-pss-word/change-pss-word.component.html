@@ -1,0 +1,49 @@
+<div class="sign-up-container">
+  <div class="sign-up-content">
+    <!-- Bouton d'annulation -->
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h2 class="title">Changer mot de passe</h2>
+    <form [formGroup]="signUpForm" class="sign-up-form" (ngSubmit)="onSubmit()">
+      <!-- Champ Email en texte simple -->
+      <div class="form-field">
+        <span class="field-label">{{ "HOME_PAGE.E_MAIL" | translate }}</span>
+        <span class="field-value">{{ signUpForm.get("email")?.value }}</span>
+      </div>
+
+      <!-- Champ Nom d'utilisateur en texte simple -->
+      <div class="form-field">
+        <span class="field-label">{{ "HOME_PAGE.USER_NAME" | translate }}</span>
+        <span class="field-value">{{ signUpForm.get("name")?.value }}</span>
+      </div>
+
+      <!-- Champ Mot de Passe -->
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "HOME_PAGE.PASSWORD" | translate }}</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Toggle password visibility'"
+            type="button"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button class="btn" color="primary" type="submit">
+        modifier password
+      </button>
+    </form>
+  </div>
+</div>

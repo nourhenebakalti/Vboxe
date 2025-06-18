@@ -1,0 +1,44 @@
+.sub_menu {
+    width: 276px;
+    height: calc(100vh - 85px);
+    background: #F7F7F7;
+    min-width: 276px;
+
+    .menu-content-item {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+
+        color: #9C9C9C;
+        cursor: pointer;
+
+        mat-icon {
+            margin-left: 25px;
+            margin-right: 14px;
+        }
+    }
+
+    .selected {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 16px;
+
+        color: #407BFF;
+        border-left: solid 3px #407BFF;
+
+        .mat-icon ::ng-deep {
+            svg {
+                path {
+                    stroke: #407BFF;
+                }
+            }
+        }
+    }
+}

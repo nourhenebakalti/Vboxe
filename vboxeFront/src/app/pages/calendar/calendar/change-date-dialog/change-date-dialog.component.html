@@ -1,0 +1,49 @@
+<form [formGroup]="proposeDateForm" (ngSubmit)="onConfirmClick()">
+  <h1 mat-dialog-title>Enter a new date :</h1>
+  <mat-dialog-content>
+    <div class="date-hour">
+      <mat-form-field>
+        <mat-label>Other Date</mat-label>
+        <input
+          matInput
+          placeholder="Enter other Date"
+          formControlName="proposedDate"
+          [matDatepicker]="startPicker"
+          required
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="startPicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="date-hour-position">
+      <mat-form-field>
+        <input
+          matInput
+          [ngxTimepicker]="startHourpicker"
+          formControlName="startHour"
+          placeholder="Start Hour"
+          [format]="24"
+        />
+        <mat-icon matSuffix class="icon-styling">schedule</mat-icon>
+        <ngx-material-timepicker #startHourpicker></ngx-material-timepicker>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      tabindex="1"
+      [disabled]="!proposeDateForm.valid"
+    >
+      {{ confirmButtonText }}
+    </button>
+    <button mat-raised-button mat-dialog-close tabindex="-1">
+      {{ cancelButtonText }}
+    </button>
+  </mat-dialog-actions>
+</form>

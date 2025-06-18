@@ -1,0 +1,115 @@
+.add-folder-content {
+    background: #FFFFFF;
+    margin-top: 50px;
+    border-radius: 11.903px;
+    padding: 66px 25px 13px 25px;
+    position: relative;
+    box-shadow: 0 11px 15px -7pxrgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+
+    .icon {
+        background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -50px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 1px 1px 4px #cecece;
+    left: 278px;
+    color: #407BFF;
+    font-size: 60px;
+    }
+
+    .title {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20.9689px;
+        line-height: 26px;
+        color: #407BFF;
+        text-align: center;
+    }
+
+    .div-file {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 16px;
+        padding: 15px;
+        cursor: pointer;
+        color: #252631;
+        border: solid 2px #407BFF;
+        border-radius: 8px;
+        height: 24px;
+        margin-bottom: 5px;
+
+        .file {
+            display: none;
+        }
+
+    }
+
+    .file_selcted_content {
+        max-height: 285px;
+        overflow: auto;
+        margin-top: 10px;
+        .file_selected {
+            margin-top: 10px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 16px;
+        padding: 15px;
+        color: #252631;
+        border: dashed 2px #407BFF;
+        border-radius: 8px;
+        height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        mat-icon{
+        cursor: pointer;
+        }
+        }
+    }
+
+    .buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+
+        .add,
+        .cancel {
+            height: 45px;
+            width: 150px;
+
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13.1056px;
+            line-height: 16px;
+            text-align: center;
+            text-transform: capitalize;
+            border: unset !important;
+        }
+
+        .add {
+            background-color: #407BFF;
+            color: #FFFFFF;
+        }
+    }
+}
+
+::ng-deep .custom-dialog>mat-dialog-container {
+    background-color: transparent !important;
+    padding: unset !important;
+    box-shadow: unset !important;
+}

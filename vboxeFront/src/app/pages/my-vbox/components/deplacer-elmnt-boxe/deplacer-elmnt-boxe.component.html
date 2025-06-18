@@ -1,0 +1,62 @@
+<div class="add-folder-content">
+     <form *ngIf="!data.confirm">
+      <div class="icon">
+        <mat-icon svgIcon="file-move"></mat-icon>
+      </div>
+      <div class="title">
+        {{ data.title }}
+      </div>
+    
+      <div class="buttons">
+        <button class="add" (click)="close(true)">Déplacer</button>
+        <button class="cancel" (click)="close(false)">Annuler</button>
+      </div>
+    </form>
+    <form *ngIf="data.confirm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="title"></div>
+        <div>
+          <p style="text-align: center; font-size: medium">
+            Enter your received code :
+          </p>
+        </div>
+        <!-- <div class="form">
+          <input
+            matInput
+            formControlName="code"
+            class="folder-name"
+            type="password"
+            required
+            minlength="6"
+            maxlength="6"
+            (keypress)="validateInput($event)"
+          />
+        </div> -->
+        <div class="form">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+          formControlName="code"
+            class="folder-name"
+            required
+            minlength="6"
+            maxlength="6"
+            (keypress)="validateInput($event)"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="'Masquer le mot de passe'"
+            [attr.aria-pressed]="hidePassword"
+            type="button"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" [disabled]="!formGroup.valid" class="add">
+            Confirmer
+          </button>
+        </div>
+      </form>
+  </div>
+  

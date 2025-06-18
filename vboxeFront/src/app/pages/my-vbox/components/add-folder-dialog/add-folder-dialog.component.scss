@@ -1,0 +1,96 @@
+.add-folder-content {
+    background: #FFFFFF;
+    margin-top: 50px;
+    border-radius: 11.903px;
+    padding: 66px 25px 13px 25px;
+    position: relative;
+    box-shadow: 0 11px 15px -7pxrgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+
+    .icon {
+        background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -50px;
+    height: 100px;
+    width: 100px;
+    box-shadow: 1px 1px 4px #cecece;
+    left: 172px;
+    color: #407BFF;
+    font-size: 60px;
+    }
+
+    .title {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20.9689px;
+        line-height: 26px;
+        /* identical to box height */
+
+
+        color: #407BFF;
+        text-align: center;
+    }
+
+    .form {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13.1056px;
+        line-height: 16px;
+
+        color: #252631;
+
+        .folder-name {
+            margin-left: 20px;
+            height: 28px;
+
+            border: 0.44164px solid #407BFF;
+            border-radius: 6.18297px;
+            flex: 1;
+
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+    }
+
+    .buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+
+        .add,
+        .cancel {
+            height: 45px;
+            width: 150px;
+
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13.1056px;
+            line-height: 16px;
+            text-align: center;
+            text-transform: capitalize;
+            border: unset !important;
+        }
+
+        .add {
+            background-color: #407BFF;
+            color: #FFFFFF;
+        }
+    }
+}
+
+::ng-deep .custom-dialog>mat-dialog-container {
+    background-color: transparent !important;
+    padding: unset !important;
+    box-shadow: unset !important;
+}

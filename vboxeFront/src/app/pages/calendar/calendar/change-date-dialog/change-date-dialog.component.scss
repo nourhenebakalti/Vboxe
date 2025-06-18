@@ -1,0 +1,20 @@
+mat-form-field {
+  display: block;
+  margin-bottom: 16px; // Ajoutez une marge en bas pour séparer les champs
+  width: 100%;
+}
+
+.date-hour {
+  display: flex;
+  flex-wrap: wrap;
+}
+.date-hour-position {
+  flex: 1;
+}
+::ng-deep .timepicker-overlay {
+  z-index: 10000000 !important ;
+}
+
+::ng-deep .timepicker-backdrop-overlay {
+  z-index: 10000000 !important ;
+}

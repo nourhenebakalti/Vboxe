@@ -1,0 +1,47 @@
+
+<div class="sign-up-container">
+  <div class="sign-up-content">
+    <!-- Bouton d'annulation -->
+    <button mat-icon-button class="close-button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h2 class="title">Edit Role User</h2>
+    <form [formGroup]="signUpForm" class="sign-up-form" (ngSubmit)="onSubmit()">
+      <!-- Champ Email en texte simple -->
+      <div class="form-field">
+        <span class="field-label">{{ "HOME_PAGE.E_MAIL" | translate }}</span>
+        <span class="field-value">{{ signUpForm.get("email")?.value }}</span>
+      </div>
+
+      <!-- Champ Nom d'utilisateur en texte simple -->
+      <div class="form-field">
+        <span class="field-label">{{ "HOME_PAGE.USER_NAME" | translate }}</span>
+        <span class="field-value">{{ signUpForm.get("name")?.value }}</span>
+      </div>
+
+      <!-- Champ Numéro de téléphone en texte simple -->
+      <div class="form-field">
+        <span class="field-label">{{
+          "HOME_PAGE.Mobile_Number" | translate
+        }}</span>
+        <span class="field-value">{{
+          signUpForm.get("mobileNumber")?.value
+        }}</span>
+      </div>
+
+      <!-- Champ Role en sélection -->
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button class="btn" color="primary" type="submit">
+        modifier role
+      </button>
+    </form>
+  </div>
+</div>

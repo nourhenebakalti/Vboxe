@@ -1,0 +1,116 @@
+<div
+  class="absolute inset-0 flex flex-col min-w-0 overflow-hidden dark:bg-gray-900"
+>
+  <mat-drawer-container class="flex-auto h-full bg-transparent">
+    <!-- Drawer -->
+    <mat-drawer
+      class="w-60 dark:bg-gray-900"
+      [autoFocus]="false"
+      [mode]="drawerMode"
+      [opened]="drawerOpened"
+      #drawer
+    >
+    </mat-drawer>
+
+    <mat-drawer-content class="flex">
+      <!-- Main -->
+      <div class="flex flex-col flex-auto">
+        <!-- Header -->
+        <div
+          style="display: flex; align-items: baseline"
+          class="flex flex-0 flex-wrap items-center p-4 border-b bg-card"
+        >
+          <div
+            style="font-weight: 500"
+            class="ml-4 text-2xl font-semibold tracking-tight whitespace-nowrap"
+            id="title"
+          >
+            {{ currentMounth }}
+          </div>
+
+          <div *ngIf="!initialViewIsMounth" style="display: flex">
+            <button class="ml-5" mat-icon-button (click)="previous()">
+              <mat-icon
+                style="color: #407bff"
+                class="icon-size-5"
+                [svgIcon]="'heroicons_solid:chevron-left'"
+              ></mat-icon>
+            </button>
+            <div
+              style="font-size: 17px; font-weight: 500; padding-top: 9px"
+              class="ml-4 text-2xl font-semibold tracking-tight whitespace-nowrap"
+            >
+              {{ dateRrange }}
+            </div>
+            <button mat-icon-button (click)="next()">
+              <mat-icon
+                style="color: #407bff"
+                class="icon-size-5"
+                [svgIcon]="'heroicons_solid:chevron-right'"
+              ></mat-icon>
+            </button>
+          </div>
+          <div
+            style="
+              display: flex;
+              font-size: 15px;
+              font-weight: 500;
+              padding-top: 9px;
+              margin-left: 10px;
+            "
+          >
+            {{ weekNum }}
+          </div>
+
+          <div
+            style="margin-left: auto; width: 38%"
+            class="hidden md:block ml-auto"
+          >
+            <button class="block-dates-btn">Bloquer des Dates</button>
+            <mat-form-field
+              class="custom-field"
+              style="
+                font-size: 0.875rem;
+                display: inline-block;
+                vertical-align: middle;
+
+                margin-left: 8px;
+                color: #1976d2;
+                background-color: #f5f5f5; /* Example fill color */
+                padding: 0 12px;
+                border-radius: 4px;
+                width: 30%;
+                height: 43px;
+              "
+            >
+              <mat-select
+                (selectionChange)="changeView(viewChanger.value)"
+                [value]="view"
+                #viewChanger="matSelect"
+              >
+                <mat-option [value]="'dayGridMonth'">Month</mat-option>
+                <mat-option [value]="'timeGridWeek'">Week</mat-option>
+                <mat-option [value]="'timeGridDay'">Day</mat-option>
+                <!-- <mat-option [value]="'listYear'">Schedule</mat-option> -->
+              </mat-select>
+            </mat-form-field>
+            <style>
+              ::ng-deep .custom-field.mat-form-field-underline {
+                opacity: 0;
+              }
+            </style>
+          </div>
+        </div>
+
+        <!-- FullCalendar -->
+        <div class="flex flex-col flex-auto">
+          <full-calendar
+            [options]="calendarOptions"
+            [events]="events"
+            #fullCalendar
+          ></full-calendar>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

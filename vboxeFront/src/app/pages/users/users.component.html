@@ -1,0 +1,56 @@
+<div class="users-content">
+  <app-header [pageTitle]="'USERS'" [withSearch]="true"></app-header>
+
+  <div class="container flex flex-wrap col-md-12">
+    <table *ngIf="friends && friends.length > 0">
+      <thead>
+        <tr>
+          <th width="25%">Nom d’utilisateur</th>
+          <th>E-mail</th>
+          <th>Date de Création</th>
+          <th>Rôle</th>
+          <th>Groupe</th>
+          <th>Statut</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let friend of friends">
+          <td class="name-pic-profile-friend">
+            <div
+              class="pic"
+              [style.background-image]="
+                profilePicture
+                  ? 'url(data:image/png;base64,' + profilePicture(friend) + ')'
+                  : ''
+              "
+            >
+              <ng-container *ngIf="!profilePicture(friend)">{{
+                abrefName(friend)
+              }}</ng-container>
+            </div>
+            {{ friend.name }}
+          </td>
+          <td>{{ friend.username }}</td>
+          <td>{{ getCreateDate(friend) | date : "dd/MM/yyyy hh:mm" }}</td>
+          <td>{{ "STATUS." + friend.role | translate }}</td>
+          <td>{{ friend.group }}</td>
+          <td>{{ friend.status ? "Actif" : "Hors Ligne" }}</td>
+          <td>
+            <mat-icon
+              svgIcon="user-delete"
+              (click)="userDelete(friend)"
+            ></mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="no_friends" *ngIf="!friends || friends.length === 0">
+      {{ "USERS_PAGE.NO_FREINDS" | translate }}
+    </div>
+    <div class="footer"></div>
+    <div class="add_friend" (click)="addFriend()">
+      <mat-icon svgIcon="user-plus"></mat-icon>
+    </div>
+  </div>
+</div>

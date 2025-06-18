@@ -1,0 +1,18 @@
+<div class="add-folder-content">
+ <form [formGroup]="formGroup">
+   <div class="icon">
+     +
+   </div>
+   <div class="title">
+     Ajouter un dossier
+   </div>
+   <div class="form">
+     Nom de dossier: <input mat-input formControlName="folderName" type="text" class="folder-name"> 
+   </div>
+   <div class="buttons">
+     <button class="add" (click)="close(true)">Ajouter</button>
+     <button class="cancel" (click)="close(false)">Annuler</button>
+   </div>
+
+ </form>
+</div>

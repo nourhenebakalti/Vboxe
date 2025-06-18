@@ -1,0 +1,45 @@
+mat-form-field {
+  // margin-right: 12px;
+  display: block;
+  margin-bottom: 16px; // Ajoutez une marge en bas pour séparer les champs
+  width: 100%;
+}
+.date-hour {
+  display: flex;
+  flex-wrap: wrap;
+}
+.date-hour-position {
+  flex: 1;
+}
+.icon-styling {
+  font-size: 18px;
+  color: rgb(71, 71, 71);
+  height: 17px;
+}
+.full-width-button {
+  width: 100%;
+}
+
+.no-backdrop-blur {
+  backdrop-filter: none;
+  filter: none;
+}
+::ng-deep .mat-datepicker-content {
+  backdrop-filter: none;
+  filter: none;
+}
+
+::ng-deep .timepicker-overlay {
+  z-index: 10000000 !important ;
+}
+
+::ng-deep .timepicker-backdrop-overlay {
+  z-index: 10000000 !important ;
+}
+::ng-deep .mat-dialog-container {
+  overflow-y: auto;
+}
+::ng-deep .mat-input-element[type=time]::after {
+  white-space: normal;
+  width: 1px;
+}

@@ -1,0 +1,117 @@
+.users-content {
+  min-height: 100vh;
+
+  .container {
+    background-color: white;
+    margin: 63px 17px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 55rem;
+
+    .no_friends {
+      padding: 30px 30px 0px 30px;
+    }
+
+    .footer {
+      height: 100px;
+    }
+
+    table {
+      width: 100%;
+      border-style: none none none;
+      border-collapse: collapse;
+
+      thead {
+        tr {
+          background: #e8e8e840;
+        }
+      }
+
+      th {
+        &:first-child {
+          padding-left: 20px;
+        }
+
+        text-align: start;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 20px;
+        /* identical to box height, or 167% */
+
+        letter-spacing: 0.1px;
+        border-color: #e8e8e840;
+        border-bottom: 1px solid #ccc;
+
+        /* Neutral / Black */
+
+        color: #25282b;
+        background: #e8e8e840;
+        height: 56px;
+      }
+
+      td {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        /* identical to box height, or 143% */
+
+        letter-spacing: 0.1px;
+
+        /* Neutral / Gray dark */
+
+        height: 56px;
+        color: #52575c;
+        border-bottom: 1px solid #ccc;
+        .pic {
+          width: 32px;
+          height: 32px;
+          background-color: #091e66;
+          border-radius: 50%;
+          color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-position: center;
+          background-size: cover;
+          margin-right: 15px;
+          margin-left: 10px;
+        }
+        mat-icon {
+          cursor: pointer;
+        }
+      }
+    }
+    .actions {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: 14px;
+    }
+  }
+}
+
+.name-pic-profile-friend {
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .custom-dialog .mat-dialog-container {
+  background-color: white !important;
+  max-width: 75%; /* Garde la largeur définie par le `width` dans le TypeScript */
+  max-height: 80vh !important;
+  border-radius: 10px;
+}
+::ng-deep .cdk-overlay-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .cdk-overlay-pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,61 @@
+// pour le petit calendrier
+.calendar-card {
+  width: auto;
+  background-color: #407bff; /* Fond bleu */
+  color: white; /* Texte en blanc */
+  padding: 50px;
+  padding-top: 8px;
+  height: 350px;
+  //border-radius: 15px; /* Arrondir les coins */
+}
+.mat-calendar-header {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+:host ::ng-deep .mat-button-wrapper {
+  font-size: 19px;
+  text-transform: lowercase;
+  width: auto;
+}
+
+:host ::ng-deep .mat-calendar-table-header,
+.mat-calendar-body-label {
+  color: white;
+}
+
+.mat-calendar-next-button,
+.mat-calendar-previous-button {
+  color: white;
+}
+
+:host ::ng-deep .mat-calendar-body-label {
+  visibility: hidden;
+}
+.ng-star-inserted {
+  display: none; /* Masquer le nom du mois dans le corps du calendrier */
+}
+
+:host ::ng-deep .mat-calendar-body-cell-content {
+  color: white;
+}
+:host ::ng-deep .mat-calendar-table-header-divider {
+  display: none;
+}
+:host ::ng-deep .mat-calendar-arrow {
+  display: none;
+}
+
+:host ::ng-deep .mat-focus-indicator.mat-calendar-period-button {
+  pointer-events: none; /* Désactive les événements de clic */
+  // opacity: 0.5; /* Optionnel : Diminue l'opacité pour indiquer visuellement que c'est désactivé */
+  cursor: not-allowed; /* Optionnel : Change le curseur pour indiquer qu'il ne peut pas être cliqué */
+}
+:host ::ng-deep #mat-calendar-button-0 {
+  font-size: 25px;
+}
+:host ::ng-deep .mat-calendar-body-cell-content.mat-calendar-body-today {
+  background-color: #68b7ff;
+  border-color: #68b7ff;
+}

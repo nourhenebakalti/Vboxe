@@ -1,0 +1,105 @@
+/* Conteneur de l'en-tête */
+.header {
+  display: flex;
+  justify-content: space-between; /* Distribue l'espace entre les éléments */
+  align-items: center; /* Centre verticalement les éléments */
+  padding: 10px 20px; /* Espacement autour de l'en-tête */
+  background-color: #f8f9fa; /* Fond clair pour l'en-tête */
+  border-bottom: 1px solid #dee2e6; /* Ligne de séparation en bas */
+}
+
+/* Titre centré */
+.center {
+  font-size: 18px;
+  font-weight: bold;
+  color: #343a40; /* Couleur sombre pour le texte */
+}
+
+/* Conteneur pour les champs de date */
+.date-block__list {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacement entre les champs de date */
+}
+
+/* Style pour les champs de formulaire */
+mat-form-field {
+  width: 200px; /* Largeur fixe pour une apparence uniforme */
+  font-size: 14px; /* Taille de police pour le champ */
+}
+
+/* Styles pour les boutons de sélection de date */
+mat-datepicker-toggle {
+  margin-left: 10px; /* Espacement entre le champ de date et le bouton de sélection */
+}
+
+/* Style pour les éléments d'entrée */
+input[matInput] {
+  width: 100%; /* Occupe toute la largeur disponible dans le champ de formulaire */
+}
+example-container {
+  display: flex; 
+  flex-direction: column;
+  max-height: 350px;
+  min-width: 300px;
+  padding-top: 30px;
+
+}
+
+.mat-table {  
+  overflow: auto;
+  max-height: 285px;
+ 
+}
+
+.user-column {
+  width: 100px;
+}
+
+.date-column {
+  width: 100px;
+}
+
+.document-column {
+  width: 400px;
+}
+
+.action-column {
+  width: 100px;
+}
+
+
+.center{
+  justify-content: left ;
+  margin-left: 0;
+}
+
+
+/* Espacer les cellules entre elles */
+.mat-cell, .mat-header-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;}
+  .mat-header-cell {
+    background-color: rgb(73 131 255);
+    color: white;
+  }
+  /* Ajustez la valeur selon vos besoins */
+
+.mat-cell ,button{
+  font-size: 11px; 
+}
+.filename{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+form{
+  padding-bottom: 30px;
+}
+.primary{
+  background: orange;
+  color: white;
+}
+

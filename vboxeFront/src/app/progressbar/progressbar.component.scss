@@ -1,0 +1,28 @@
+.div1 {
+    height: 15px;
+    background-color: #4ec19e;
+  }
+  .div2 {
+    height: 15px;
+    background-color: #ff7156;
+  }
+  .div3 {
+    height: 15px;
+    background-color: #ff7156;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23c82c0e' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0     0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .div4 {
+    height: 15px;
+    background-color: #b68de2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%236D33AB' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0     0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .div5 {
+    height: 15px;
+    background-color: #ff56c1;
+  }
+  .number-display {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #333;
+    display: flex;
+  }

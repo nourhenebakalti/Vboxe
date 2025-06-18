@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add Signature</h2>
+<div mat-dialog-content>
+    <div class="form-group">
+        <label for="Nom">Signature:</label>
+        <input type="text" id="nom" [(ngModel)]="nom" name="nom" class="form-control" placeholder="Choose signature file" required>
+    </div>
+    <!-- Input area for choosing the signature file -->
+    <div class="form-group">
+        <label for="signature">Signature:</label>
+        <input type="file" id="signature" name="signature" (change)="onFileSelected($event)" class="form-control" placeholder="Choose signature file" required>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <!-- Button to add the signature -->
+    <button mat-button class="btn-primary" (click)="addSignature()">Add Signature</button>
+    <button mat-button (click)="dialogRef.close()">Cancel</button>
+</div>

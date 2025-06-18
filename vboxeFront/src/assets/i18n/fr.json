@@ -1,0 +1,61 @@
+{
+  "MY_DOCUMENTS": "Documents",
+  "USERS": "Gestion des Utilisateurs",
+  "STATISTIC": "Statistiques",
+  "PLANNING_V": "Planning",
+  "COFFRE_FORT": "Safety Box",
+  "MAIL_BOX": "Email Box",
+  "STATUS": {
+    "ROLE_USER": "Utilisateur",
+    "ROLE_ADMIN": "Managers",
+    "SUPER_USER": "Super Utilisateur",
+    "SUPER_USER_ELARGI": "Super Utilisateur Élargi"
+  },
+  "HOME_PAGE": {
+    "SLOGAN_1": "Plateforme de gestion",
+    "SLOGAN_2": "de documents",
+    "CONNEXION": "Se Connecter",
+    "Mobile_Number": "Téléphone portable",
+    "E_MAIL": "E-mail",
+    "PASSWORD": "Mot de passe",
+    "CONFIRM_PASSWORD": "Confirmer le mot de passe",
+    "CREATE_ACCOUNT": "Créer votre Compte",
+    "USER_NAME": "Nom d'utilisateur",
+    "INSCRIPTION": "Inscription"
+  },
+  "MENU": {
+    "MY_VEBOX": "Mon Vboxe",
+    "SAFETY_BOX": "Safety Box",
+    "USERS": "Utilisateurs",
+    "STAT": "Statistique",
+    "MAIL": "Messagerie",
+    "PLANNING": "Planning",
+    "VISIO": "Video Conference",
+    "LOGOUT": "Log-out"
+  },
+  "INDICATOR_STORAGE": {
+    "TITLE": "Espace de Stockage",
+    "INFO": "{{used}} sur {{total}} utilisés"
+  },
+  "SUB_MENU": {
+    "MY_VBOX": "Mon Vboxe",
+    "MY_VBOX_SHARE": "Fichiers Partagés",
+    "MY_VBOX_MOST_RECENT": "Le plus Récent",
+    "MY_VBOX_FAVORITES": "Favoris",
+    "MY_VBOX_TRASH": "Corbeille",
+    "ADD_FILE": "Ajouter Fichier"
+  },
+  "USERS_PAGE": {
+    "NO_FREINDS": "Vous n'avez pas encore des amis."
+  },
+  "FORM.TITLE": "Add a code",
+  "FORM.LABEL": "Code",
+  "FORM.ERROR.REQUIRED": "This field is required",
+  "FORM.ERROR.MINLENGTH": "The code must be at least 6 characters long",
+  "FORM.ERROR.MAXLENGTH": "The code cannot exceed 6 characters",
+  "FORM.BUTTON": "Submit",
+  "FORM.CONFIRM_LABEL": "Confirm code",
+  "FORM.CONFIRM_ERROR": "Code not confirmed",
+  "FORM.ACCESS.TITLE": "Enter Access Code",
+  "FORM.ACCESS.BUTTON": "validate"
+}

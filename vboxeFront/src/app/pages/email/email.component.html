@@ -1,0 +1,23 @@
+<div class="my-vbox">
+  <app-header [pageTitle]="'Emails'" [withSearch]="true"></app-header>
+  <div class="my-vbox-content">
+      <div class="menu">
+          <div class="menu-content-item" *ngFor="let menu of subMenus"
+              [routerLink]="['/', 'page', 'email', menu.link]" routerLinkActive="selected">
+              <mat-icon [svgIcon]="menu.picto"></mat-icon> <span>{{ menu.content | translate }}</span>
+          </div>
+          <!-- <div class="btn-div">
+        <button mat-flat-button class="add_file_btn">{{ 'SUB_MENU.ADD_FILE' | translate }}</button>
+      </div> -->
+
+          <button (click)="navigate()" class="btn btn-primary">Rediger un message</button>
+
+      </div>
+
+      <div class="content">
+     <router-outlet></router-outlet>
+
+      </div>
+  </div>
+
+</div>

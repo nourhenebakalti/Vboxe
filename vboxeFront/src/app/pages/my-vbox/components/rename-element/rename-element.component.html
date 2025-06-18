@@ -1,0 +1,27 @@
+<div class="add-folder-content">
+  <div class="icon">
+    <mat-icon svgIcon="file-rename"></mat-icon>
+  </div>
+  <div class="title">Renommer le {{ entity }}</div>
+  <!-- Affichage de l'ancien nom -->
+  <div class="form">
+    <label>Ancien Nom : </label>
+    <span>{{ fileBaseName }}</span>
+    <!-- Affiche le nom du fichier -->
+  </div>
+
+  <!-- Champ de saisie pour le nouveau nom -->
+  <div class="form">
+    <label>Nouveau Nom : </label>
+    <input
+      type="text"
+      [(ngModel)]="newFileName"
+      placeholder="Entrez le nouveau nom"
+    />
+  </div>
+
+  <div class="buttons">
+    <button class="add" (click)="close(true)">Renommer</button>
+    <button class="cancel" (click)="close(false)">Annuler</button>
+  </div>
+</div>

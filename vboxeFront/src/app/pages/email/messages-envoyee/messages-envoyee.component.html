@@ -1,0 +1,21 @@
+<div *ngFor="let message of messages" class="card email-card">
+    <a [routerLink]="['/page/email', message.id_message]">
+      <div class="card-header">
+        <img *ngIf="message?.reciever?.profilePicture" [src]="'data:image/jpeg;base64,' + message?.reciever?.profilePicture" alt="User Avatar"class="sender-img">
+        <img *ngIf="!message?.reciever?.profilePicture" src="assets/images/logo.svg" alt="User Avatar" class="sender-img">
+        <div class="header-info">
+          <h6>{{ message.subject }}</h6>
+          <div class="email-meta">
+            <span class="from">To : {{ message.reciever?.username }}</span>
+           
+          </div>
+        </div>
+        <span class="date">{{ message.mail_date | date: 'medium' }}</span>
+      </div>
+  
+      <div class="card-body subtitle-container">
+        {{ message.content }}
+      </div>
+    </a>
+  </div>
+  

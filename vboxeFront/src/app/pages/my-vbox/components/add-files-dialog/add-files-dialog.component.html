@@ -1,0 +1,26 @@
+<div class="add-folder-content">
+ <form [formGroup]="formGroup">
+   <div class="icon">
+     +
+   </div>
+   <div class="title">
+     Uploader des fichiers
+   </div>
+   <div class="div-file" (click)="clickFileSelect()">
+    <span>
+      Selectionner des Fichiers 
+    </span>
+    <input formControlName="folderName" (change)="selectFiles($event)" type="file" class="file" multiple #file> 
+  </div>
+  <div class="file_selcted_content">
+    <div class="file_selected" *ngFor="let file of listselectFiles; let i = index" >
+      {{file.name}} <mat-icon svgIcon="trash-2" (click)="deleteFile(i)"></mat-icon>
+    </div>
+  </div>
+   <div class="buttons">
+     <button class="add" (click)="close(true)">Ajouter</button>
+     <button class="cancel" (click)="close(false)">Annuler</button>
+   </div>
+
+ </form>
+</div>

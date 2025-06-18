@@ -1,0 +1,112 @@
+.users-content {
+    margin-left: 256px;
+    min-height: 100vh;
+
+    .container {
+        background-color: white;
+        margin: 46px 36px;
+        border-radius: 10px;
+        position: relative;
+        max-width: 70rem;
+  
+        .no_friends {
+            padding: 30px 30px 0px 30px;
+        }
+
+        .footer {
+            height: 100px;
+        }
+
+        .add_friend {
+            width: 64px;
+            height: 64px;
+            background-color: #336CFB;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: absolute;
+            right: -8px;
+            bottom: -9px;
+        }
+
+        table {
+            width: 100%;
+            border-style: none none none;
+            border-collapse: collapse;
+
+            thead {
+                tr {
+                    background: #E8E8E840;
+                }
+            }
+
+            th {
+                &:first-child {
+
+                    padding-left: 20px;
+                }
+
+                text-align: start;
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 20px;
+                /* identical to box height, or 167% */
+
+                letter-spacing: 0.1px;
+                border-color: #E8E8E840;
+                border-bottom: 1px solid #ccc;
+
+                /* Neutral / Black */
+
+                color: #25282B;
+                background: #E8E8E840;
+                height: 56px;
+            }
+
+            td {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                /* identical to box height, or 143% */
+
+                letter-spacing: 0.1px;
+
+                /* Neutral / Gray dark */
+
+                height: 56px;
+                color: #52575C;
+                border-bottom: 1px solid #ccc;
+                .pic {
+                    width: 32px;
+                    height: 32px;
+                    background-color: #091E66;
+                    border-radius: 50%;
+                    color: #FFF;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-position: center;
+                    background-size: cover;
+                    margin-right: 15px;
+                    margin-left: 10px;
+                }
+                mat-icon {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+
+.name-pic-profile-friend {
+    display: flex;
+    align-items: center;
+}

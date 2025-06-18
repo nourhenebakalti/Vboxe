@@ -1,0 +1,70 @@
+<div class="widget-container">
+    <div class="widget green">       
+        <div class="value">
+            <div class="top">Nombre des utilisateurs</div>
+            <div class="middle">{{NbrUsers}}</div>
+            <div class="bottom"><i class="bi bi-arrow-up" style="color: green;"></i><span style="color: green;">{{NbrUsersDepuisMoisDernier ?? 0  | number:'1.0-0'}}%</span>&nbsp; &nbsp;&nbsp;&nbsp;Depuis le mois dernier</div>
+        </div>
+        <button mat-fab extended [ngStyle]="{transform: 'scale(0.8)'
+    }" class="ma_bouton " routerLink="/page/users">
+            <mat-icon >person_outline</mat-icon>
+            </button>
+    </div>
+    <div class="widget yellow" >  
+        
+      
+        <ng-container >
+        
+        <div class="value">    
+            <div class="top">Nombre de fichiers</div>
+            <div class="middle">{{NbrFiles}}</div>
+            <div class="bottom"><i class="bi bi-arrow-up" style="color: green;"></i><span style="color: green;">{{NbrFilesDepuisMoisDernier ?? 0  | number:'1.0-0'}} %</span>&nbsp; &nbsp;&nbsp;&nbsp;Depuis le mois dernier</div>      
+        </div>
+        <button mat-fab extended [ngStyle]="{transform: 'scale(0.8)'
+    }" class="ma_bouton "(click)="showTheFileStatistics()">
+            <mat-icon >insert_drive_file</mat-icon>
+            </button>
+        </ng-container>
+        
+</div>
+    <div class="widget red">
+        <div class="value">    
+            <div class="top">Nombre de dossiers</div>
+            <div class="middle">{{NbrFolders}}</div>
+            <div class="bottom"><i class="bi bi-arrow-up" style="color: green;"></i><span style="color: green;">{{NbrFoldersDepuisMoisDernier}}%</span>&nbsp; &nbsp;&nbsp;&nbsp;Depuis le mois dernier</div>      
+        </div>
+        <button mat-fab extended [ngStyle]="{transform: 'scale(0.8)'
+    }" class="ma_bouton " routerLink="/page/my_vbox/files">
+            <mat-icon >folder</mat-icon>
+            </button>
+        
+    </div>
+    <div class="widget blue">
+
+        <div class="value">
+            <div class="top"></div>
+            <div class="bottom"></div>
+        </div>
+        <button mat-fab extended id="button" [ngStyle]="{transform: 'scale(0.8)'
+    }">
+            <mat-icon >enhanced_encryption</mat-icon>
+            </button>
+    </div>
+</div>
+
+<!-- Modal Template -->
+<ng-template   #statisticsModal>
+  
+    <h2 mat-dialog-title class="modal-title">File Statistics</h2>
+    <mat-dialog-content class="modal-content">
+      <p class="stat-item">PDF Files: {{ nombrePDF | number:'1.0-0' }} %</p>
+      <p class="stat-item">Image Files: {{ nombreImage | number:'1.0-0' }} %</p>
+      <p class="stat-item">Word Files: {{ nombreWord | number:'1.0-0' }} %</p>
+      <p class="stat-item">PPT Files: {{ nombrePPT | number:'1.0-0' }} %</p>
+    </mat-dialog-content>
+    <mat-dialog-actions class="modal-actions">
+      <button mat-button mat-dialog-close class="close-btn">Close</button>
+    </mat-dialog-actions>
+
+  </ng-template>
+  

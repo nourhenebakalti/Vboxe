@@ -1,0 +1,16 @@
+<div *ngIf="!ifImage && extension !== 'pdf'">
+  <ngx-doc-viewer
+    [url]="urlFormated"
+    viewer="mammoth"
+    style="width: 100%; height: 100%"
+  ></ngx-doc-viewer>
+</div>
+<div *ngIf="extension == 'pdf'">
+  <iframe [src]="urlFormated" width="100%" height="600px"></iframe>
+</div>
+
+<!-- Si imageUrl est défini, afficher l'image -->
+
+<div *ngIf="ifImage" class="image-container">
+  <img [src]="urlFormated" alt="Image" />
+</div>

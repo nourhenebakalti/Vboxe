@@ -1,0 +1,40 @@
+<div class="dashboard-menu">
+  <img class="logo" src="/assets/images/logo-menu.svg" />
+  <div class="menu-content">
+    <div *ngIf="!temporary">
+      <div
+        class="menu-content-item"
+        *ngFor="let menu of menus"
+        [routerLink]="['/', 'page', menu.link]"
+        routerLinkActive="selected"
+      >
+        <mat-icon [svgIcon]="menu.picto"></mat-icon>
+        <span>{{ "MENU." + menu.content | translate }}</span>
+      </div>
+    </div>
+    <div *ngIf="temporary">
+      <ng-container *ngFor="let menu of menus">
+        <div
+          class="menu-content-item"
+          *ngIf="temporary && menu.content === 'MY_VEBOX'"
+          [routerLink]="['/', 'page', menu.link]"
+          routerLinkActive="selected"
+        >
+          <mat-icon [svgIcon]="menu.picto"></mat-icon>
+          <span>{{ "MENU." + menu.content | translate }}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="sign-logo">
+    <img src="/assets/images/sign-logo.png" />
+  </div>
+  <div class="divider"></div>
+  <app-indicator-storage
+    [used]="total"
+    [total]="storageSize"
+  ></app-indicator-storage>
+  <button mat-flat-button class="btn" (click)="logout()">
+    <img src="/assets/images/log-out.svg" />{{ "MENU.LOGOUT" | translate }}
+  </button>
+</div>

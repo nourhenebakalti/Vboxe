@@ -1,0 +1,396 @@
+<div class="my-vbox">
+  <app-header [pageTitle]="'COFFRE_FORT'"></app-header>
+  <div *ngIf="hasPasswordCoffre" class="my-vbox-content">
+    <div class="menu">
+      <div
+        class="menu-content-item"
+        *ngFor="let menu of subMenus"
+        [routerLink]="['/', 'page', 'safty', menu.link]"
+        routerLinkActive="selected"
+      >
+        <mat-icon [svgIcon]="menu.picto"></mat-icon>
+        <span>{{ "SUB_MENU." + menu.content | translate }}</span>
+      </div>
+      <div class="devider"></div>
+      <div class="info" *ngIf="selectedFile || selectedFolder">
+        <div class="info-title">Détails du document</div>
+        <div class="nom">
+          <ng-container *ngIf="selectedFolder">
+            <mat-icon svgIcon="folder-icon"></mat-icon>
+            {{ selectedFolder.folderName }}
+          </ng-container>
+          <ng-container *ngIf="selectedFile">
+            <mat-icon [svgIcon]="getFileIcon(selectedFile.name)"></mat-icon>
+            <div class="nom-txt">
+              {{ selectedFile.name }}
+            </div>
+          </ng-container>
+        </div>
+        <div class="size-file">
+          <mat-icon
+            [svgIcon]="selectedFolder.protect ? 'unlock' : 'unlock-doc'"
+            *ngIf="selectedFolder"
+            class="info-lock"
+          ></mat-icon>
+          <mat-icon
+            [svgIcon]="selectedFile.protect ? 'unlock' : 'unlock-doc'"
+            *ngIf="selectedFile"
+            class="info-lock"
+          ></mat-icon>
+          <span *ngIf="selectedFile">{{ formatBytes(selectedFile.size) }}</span>
+        </div>
+
+        <div class="info-title margin-top-title">Propriétaire</div>
+        <div class="nom" *ngIf="page === 'files' && api.profile">
+          <div
+            class="compte"
+            [style.background-image]="
+              api.profile.profilePicture
+                ? 'url(data:image/png;base64,' +
+                  api.profile.profilePicture +
+                  ')'
+                : ''
+            "
+          >
+            <ng-container *ngIf="!api.profile.profilePicture">{{
+              api.profile.name.substring(0, 1).toUpperCase()
+            }}</ng-container>
+          </div>
+          {{ api.profile.name }}
+        </div>
+        <div class="nom" *ngIf="page === 'share'">
+          <ng-container *ngIf="selectedDocumentuserInfo">
+            <div
+              class="compte"
+              [style.background-image]="
+                selectedDocumentuserInfo.profilePicture
+                  ? 'url(data:image/png;base64,' +
+                    selectedDocumentuserInfo.profilePicture.data +
+                    ')'
+                  : ''
+              "
+            >
+              <ng-container *ngIf="!selectedDocumentuserInfo.profilePicture">{{
+                selectedDocumentuserInfo.name.substring(0, 1).toUpperCase()
+              }}</ng-container>
+              <div
+                class="status"
+                [ngClass]="getStatusUser(selectedDocumentuserInfo)"
+              ></div>
+            </div>
+            {{ selectedDocumentuserInfo.name }}
+          </ng-container>
+        </div>
+        <ng-container
+          *ngIf="
+            page === 'files' &&
+            selectedDocumentuserShared &&
+            selectedDocumentuserShared.length > 0
+          "
+        >
+          <div class="info-title margin-top-title">Partagé avec</div>
+          <div class="nom user-share">
+            <div
+              class="user-item"
+              *ngFor="
+                let selectedDocumentuserSharedUser of selectedDocumentuserShared
+              "
+            >
+              <div
+                class="compte"
+                [style.background-image]="
+                  selectedDocumentuserSharedUser.user[0].profilePicture
+                    ? 'url(data:image/png;base64,' +
+                      selectedDocumentuserSharedUser.user[0].profilePicture
+                        .data +
+                      ')'
+                    : ''
+                "
+              >
+                <ng-container
+                  *ngIf="!selectedDocumentuserSharedUser.user[0].profilePicture"
+                  >{{
+                    selectedDocumentuserSharedUser.user[0].name
+                      .substring(0, 1)
+                      .toUpperCase()
+                  }}</ng-container
+                >
+                <div
+                  class="status"
+                  [ngClass]="
+                    getStatusUser(selectedDocumentuserSharedUser.user[0])
+                  "
+                ></div>
+              </div>
+              {{ selectedDocumentuserSharedUser.user[0].name }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        (checkAccess && page === 'files') || (checkAccess && page === 'share')
+      "
+      class="content"
+      (contextmenu)="onRightClick($event)"
+    >
+      <button
+        class="preview-folder"
+        *ngIf="content?.currentFolder"
+        (click)="dbClickFolder(content.currentFolder?.folderParentId)"
+      >
+        <mat-icon>reply</mat-icon>
+      </button>
+      <div class="folder-name" *ngIf="content?.currentFolder">
+        {{ content.currentFolder?.folderName }}
+      </div>
+      <div class="container">
+        <ng-container *ngIf="content">
+          <div
+            class="item"
+            [ngClass]="{ selected: selectedFolder === folder }"
+            *ngFor="let folder of content?.folders; let i = index"
+            (click)="clickFolder(folder)"
+            (dblclick)="dbClickFolder(folder._id)"
+            (contextmenu)="clickFolder(folder)"
+          >
+            <div *ngIf="folder.length != 1" class="icon-content">
+              <mat-icon svgIcon="folder-icon"></mat-icon>
+              <div class="unlock" *ngIf="folder.protect">
+                <mat-icon svgIcon="unlock2"></mat-icon>
+              </div>
+              <div
+                class="shared-indice"
+                *ngIf="folder.share && folder.share.length > 0"
+              >
+                <mat-icon svgIcon="file-share"></mat-icon>
+              </div>
+            </div>
+            <div class="item-name">{{ folder.folderName }}</div>
+          </div>
+
+          <div
+            class="item"
+            [ngClass]="{ selected: selectedFile === file }"
+            *ngFor="let file of content?.files; let i = index"
+            (click)="clickFile(file)"
+            (dblclick)="dbClickFile(file._id, file.name)"
+            (contextmenu)="clickFile(file)"
+          >
+            <div *ngIf="file != null" class="icon-content">
+              <mat-icon [svgIcon]="getFileIcon(file.name)"></mat-icon>
+              <div class="unlock for_file" *ngIf="file.protect">
+                <mat-icon svgIcon="unlock2"></mat-icon>
+              </div>
+              <div
+                class="shared-indice"
+                *ngIf="file.share && file.share.length > 0"
+              >
+                <mat-icon svgIcon="file-share"></mat-icon>
+              </div>
+            </div>
+            <div class="item-name">{{ file.name }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div *ngIf="!firstVerif" class="content-access">
+      <div class="icon-content-access">
+        <mat-icon [svgIcon]="'lock'"></mat-icon>
+      </div>
+      <div class="container-access">
+        <form [formGroup]="form" (ngSubmit)="onValidPassCode()">
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "FORM.ACCESS.TITLE" | translate }}</mat-label>
+            <br />
+            <input
+              type="password"
+              formControlName="passcode"
+              required
+              minlength="6"
+              maxlength="6"
+              style="display: none"
+            />
+          </mat-form-field>
+          <div class="circle-buttons-container">
+            <mat-radio-group
+              aria-label="Select an option"
+              [value]="selectedDigit"
+              (change)="selectedDigit = $event.value"
+            >
+              <mat-radio-button value="1" [disabled]="true"></mat-radio-button>
+              <mat-radio-button value="2" [disabled]="true"></mat-radio-button>
+              <mat-radio-button value="3" [disabled]="true"></mat-radio-button>
+              <mat-radio-button value="4" [disabled]="true"></mat-radio-button>
+              <mat-radio-button value="5" [disabled]="true"></mat-radio-button>
+              <mat-radio-button value="6" [disabled]="true"></mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="button-row">
+            <button mat-button (click)="addDigit(1)">1</button>
+            <button mat-button (click)="addDigit(2)">2</button>
+            <button mat-button (click)="addDigit(3)">3</button>
+          </div>
+          <div class="button-row">
+            <button mat-button (click)="addDigit(4)">4</button>
+            <button mat-button (click)="addDigit(5)">5</button>
+            <button mat-button (click)="addDigit(6)">6</button>
+          </div>
+          <div class="button-row">
+            <button mat-button (click)="addDigit(7)">7</button>
+            <button mat-button (click)="addDigit(8)">8</button>
+            <button mat-button (click)="addDigit(9)">9</button>
+          </div>
+          <div class="button-row">
+            <button mat-button (click)="addDigit(0)">0</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="firstVerif && !secondVerif" class="add-folder-content">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <div class="title"></div>
+        <div>
+          <p style="text-align: center; font-size: medium">
+            Enter your received code :
+          </p>
+        </div>
+        <div class="form">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" 
+          formControlName="code"
+            class="folder-name"
+            required
+            minlength="6"
+            maxlength="6"
+            (keypress)="validateInput($event)"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="'Masquer le mot de passe'"
+            [attr.aria-pressed]="hidePassword"
+            type="button"
+          >
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" [disabled]="!formGroup.valid" class="add">
+            Confirmer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div
+    #menu
+    style="visibility: hidden; opacity: 0; position: fixed"
+    [style.left]="menuTopLeftPosition.x"
+    [style.top]="menuTopLeftPosition.y"
+    class="menu"
+    *ngIf="selectedFile || selectedFolder || page === 'files'"
+  >
+    <div
+      class="menu-item"
+      (click)="redirectToPdfViewer(selectedFile?._id)"
+      *ngIf="(page === 'files' || page === 'share') && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="visibility"></mat-icon> Visualiser
+    </div>
+
+    <div
+      class="menu-item"
+      (click)="share()"
+      *ngIf="page === 'files' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-share"></mat-icon> Partager
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteShare()"
+      *ngIf="page === 'share' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-share"></mat-icon> Supprimer le partage
+    </div>
+    <div
+      class="menu-item"
+      (click)="download()"
+      *ngIf="selectedFile || selectedFolder"
+    >
+      <mat-icon svgIcon="file-download"></mat-icon> Télécharger
+    </div>
+    <div
+      class="menu-item"
+      (click)="decrypt()"
+      *ngIf="page === 'files' && selectedFile"
+    >
+      <mat-icon svgIcon="chiffrer"></mat-icon> Déchiffrer
+    </div>
+    <div
+      class="menu-item"
+      (click)="addForlder()"
+      *ngIf="page === 'files' && !selectedFile"
+    >
+      <span class="material-icons-outlined menu-icon"> create_new_folder </span>
+      Ajouter un Dossier
+    </div>
+    <div
+      class="menu-item"
+      (click)="addFiles()"
+      *ngIf="page === 'files' && !selectedFile"
+    >
+      <span class="material-icons-outlined menu-icon"> note_add </span> Ajouter
+      des Fichiers
+    </div>
+    <div
+      class="menu-item"
+      (click)="addFilesChiffrer()"
+      *ngIf="page === 'files' && !selectedFile"
+    >
+      <span class="material-icons-outlined menu-icon"> note_add </span> Ajouter
+      Fichiers chiffrés
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteFiles()"
+      *ngIf="(page === 'files' || page === 'share') && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-trash-2" class="trash2"></mat-icon> Supprimer
+    </div>
+    <div
+      class="menu-item"
+      (click)="moveFiles()"
+      *ngIf="page === 'files' && (selectedFile || selectedFolder)"
+    >
+      <mat-icon svgIcon="file-move"></mat-icon> Déplacer
+    </div>
+    <div
+      class="menu-item"
+      (click)="protect()"
+      *ngIf="
+        page === 'files' &&
+        ((selectedFile && !selectedFile.protect) ||
+          (selectedFolder && !selectedFolder.protect))
+      "
+    >
+      <mat-icon svgIcon="unlock"></mat-icon> Protéger
+    </div>
+    <div
+      class="menu-item"
+      (click)="deleteProtect()"
+      *ngIf="
+        page === 'files' &&
+        ((selectedFile && selectedFile.protect) ||
+          (selectedFolder && selectedFolder.protect))
+      "
+    >
+      <mat-icon svgIcon="unlock-doc"></mat-icon> Arrêter la protéction
+    </div>
+  </div>
+</div>

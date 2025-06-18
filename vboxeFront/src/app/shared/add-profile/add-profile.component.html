@@ -1,0 +1,98 @@
+<div class="container">
+  <!-- Bouton d'annulation -->
+  <button mat-icon-button class="close-button" (click)="onCancel()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h2 class="title">Ajouter Profil</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="registerUserProfile()">
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" type="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Téléphone portable</mat-label>
+      <input matInput formControlName="mobileNumber" type="tel" required />
+    </mat-form-field>
+
+    <!-- Mot de passe -->
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        class="sign-up-input"
+        [ngClass]="{
+          error: signUpSubmitted && signUpForm.controls.password.invalid
+        }"
+        placeholder="Mot de passe"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="togglePasswordVisibility()"
+        type="button"
+      >
+        <mat-icon>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="signUpSubmitted && signUpForm.controls.password.invalid"
+      >
+        Mot de passe requis (min 6 caractères)
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Confirmation du mot de passe -->
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmer le mot de passe</mat-label>
+      <input
+        matInput
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+        formControlName="confirmPassword"
+        class="sign-up-input"
+        [ngClass]="{
+          error: signUpSubmitted && signUpForm.controls.confirmPassword.invalid
+        }"
+        placeholder="Confirmer le mot de passe"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="toggleConfirmPasswordVisibility()"
+        type="button"
+      >
+        <mat-icon>{{
+          hideConfirmPassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="signUpSubmitted && signUpForm.controls.confirmPassword.invalid"
+      >
+        Les mots de passe ne correspondent pas
+      </mat-error>
+    </mat-form-field>
+
+    <!-- je veux deux field pour le nb heures && nb jours -->
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Jours avant suppression du profil</mat-label>
+      <input matInput formControlName="deletionDays" type="number" min="0" max="99" required />
+    </mat-form-field> -->
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Heures avant suppression du profil</mat-label>
+      <input matInput formControlName="deletionHours" type="number" min="0" max="23" required />
+    </mat-form-field>
+
+    <button mat-flat-button class="button-submit" color="primary" type="submit">
+      Ajouter
+    </button>
+  </form>
+</div>

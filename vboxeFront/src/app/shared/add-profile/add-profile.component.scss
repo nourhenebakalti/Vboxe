@@ -1,0 +1,38 @@
+.container {
+  //background-color: #3b6df8;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  position: relative;
+  //box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.title {
+  //color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 5px;
+}
+
+.button-submit {
+  //background-color: #fbc02d;
+  //color: black;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.close-button {
+  top: 0px;
+  left: 207px;
+  color: #333;
+}

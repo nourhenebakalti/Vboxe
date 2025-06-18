@@ -1,0 +1,32 @@
+<div class="home-container">
+    <div class="content">
+      <div class="header">
+        <div class="logo"><img src="assets/images/logo.svg" /> Vboxe</div>
+        <div class="connexion">
+            <form [formGroup]="loginForm" (submit)="login()">
+                <input
+                  formControlName="code"
+                  class="connexion-input"
+                  placeholder="Entrez votre code"
+                />
+                <button mat-flat-button class="btn" type="submit">
+                  Connexion
+                </button>
+              </form>
+        </div>
+      </div>
+  
+      <div class="middle">
+        <div class="left-bloc">
+          <div class="slogan-1">{{ "HOME_PAGE.SLOGAN_1" | translate }}</div>
+          <div class="slogan-2">{{ "HOME_PAGE.SLOGAN_2" | translate }}</div>
+          <div class="image">
+            <img src="assets/images/home_image_back.svg" class="image_back" />
+            <img src="assets/images/home_image_front.svg" class="image_front" />
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

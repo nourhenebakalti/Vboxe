@@ -1,0 +1,37 @@
+<div class="calendar-content mb-5">
+  <app-header class="fixe-header" [pageTitle]="'PLANNING_V'"></app-header>
+  <div class="scrollable-content">
+    <mat-drawer-container style="border: 3px blue">
+      <mat-drawer
+        class="slide-user-invitation"
+        mode="side"
+        style="width: 34%"
+        opened
+      >
+        <div class="fixe-content">
+          <app-mat-calendar></app-mat-calendar>
+
+          <div class="slide-user-invitation-title">Demandes</div>
+          <app-hour></app-hour>
+        </div>
+        <div class="notif-container">
+          <div *ngFor="let notifData of pagedUserTab">
+            <app-avatar-card
+              [notifData]="notifData"
+              [userId]="idUserConnected"
+              (confirm)="childData(notifData)"
+              (changeDate)="childChangeDate(notifData)"
+            ></app-avatar-card>
+          </div>
+          <app-paginator
+            [userTab]="userTab"
+            (pagedUserTabEmitter)="pagedUserTab = $event"
+          ></app-paginator>
+        </div>
+      </mat-drawer>
+      <mat-drawer-content style="width: auto">
+        <app-calendar-view></app-calendar-view>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+</div>

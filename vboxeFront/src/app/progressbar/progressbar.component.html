@@ -1,0 +1,8 @@
+<div fxLayout="row" fxLayoutGap="0px" style="width: 200px">
+    <div fxFlex="15" class="div1"  (mouseover)="showNumber()" 
+    (mouseout)="hideNumber()" ><div *ngIf="isNumberVisible" class="percent-display">PDF {{PercentPdf | number:'1.2-2' }}%</div></div>
+    <div fxFlex="30" class="div2"></div>
+    <div fxFlex="12" class="div3"></div>
+    <div fxFlex="16" class="div4"></div>
+    <div fxFlex="16" class="div5"></div>
+  </div>

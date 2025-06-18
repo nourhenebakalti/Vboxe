@@ -1,0 +1,83 @@
+.example-header-image {
+  background-size: cover;
+  height: 70px;
+  width: 70px;
+}
+.user-invitation-container {
+  background-color: #ccd8f4;
+  border-bottom: solid 3px rgba(#ffffff, 0.32);
+  height: 150px;
+}
+.user-invitation-header {
+  align-items: center;
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.user-invitation-action {
+  display: flex;
+  gap: 10px;
+}
+.user-invitation-date {
+  display: flex !important;
+  align-items: center;
+  gap: 5px;
+}
+.user-invitation-name {
+  color: #373737;
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-invitation-icon-date {
+  width: unset !important;
+  display: flex;
+  gap: 5px;
+}
+.user-invitation-icon-date-content {
+  width: unset !important;
+}
+.user-invitation-videocam {
+  text-align: end;
+  //background-color: #ffffff;
+  width: 100%;
+}
+.user-invitation-cam {
+  background-color: #407bff;
+  width: 35px;
+  height: 39px;
+}
+.user-invitation-action-desc {
+  background-color: #407bff;
+  color: #ffffff;
+}
+.user-invitation-action-desc-1 {
+  background-color: #70b864;
+  color: #ffffff;
+}
+
+.block-dates-btn {
+  background-color: #db675f; /* Couleur rouge */
+  color: white;
+  border-color: #f45f30;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  cursor: not-allowed; /* Curseur pour indiquer que le bouton n'est pas cliquable */
+  pointer-events: none;
+}
+.block-dates-btn-vert {
+  background-color: #70b864; /* Couleur rouge */
+  color: white;
+  border-color: #95d99e;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  cursor: not-allowed; /* Curseur pour indiquer que le bouton n'est pas cliquable */
+  pointer-events: none;
+}

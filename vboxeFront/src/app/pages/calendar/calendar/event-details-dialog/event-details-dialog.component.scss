@@ -1,0 +1,58 @@
+.dialog-content {
+  margin-top: 20px;
+}
+
+.dialog-content div {
+  margin-bottom: 8px;
+  // display: flex; /* Utiliser Flexbox pour aligner les éléments */
+  // align-items: center; /* Aligner verticalement les éléments */
+}
+
+.dialog-content strong {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.mat-icon {
+  color: #0d6efd; /* Changer la couleur des icônes */
+  margin-right: 10px;
+}
+.dialog-buttons {
+  margin-top: 20px; /* Ajuster l'espacement entre les boutons et le contenu */
+}
+
+.dialog-buttons button {
+  margin-right: 10px; /* Ajuster l'espacement entre les boutons */
+}
+mat-chip {
+  // background-color: #f1f1f1; /* Fond plus clair */
+  // color: #333; /* Couleur du texte */
+  // margin: 4px; /* Espacement entre les chips */
+  // padding: 8px; /* Plus d'espace à l'intérieur */
+  // border-radius: 16px; /* Bords arrondis */
+  // font-size: 14px; /* Taille de police personnalisée */
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Légère ombre pour effet 3D */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+th.confirmed {
+  background-color: green;
+  color: white;
+}
+
+th.not-confirmed {
+  background-color: red;
+  color: white;
+}

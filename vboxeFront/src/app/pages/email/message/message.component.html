@@ -1,0 +1,38 @@
+<div class="message-card">
+  <div class="message-header">
+    <h4 class="message-subject">{{ message?.subject }}</h4>
+    <span class="message-date">{{ message?.mail_date | date: 'medium' }}</span>
+   
+  </div>
+  <div class="message-meta">
+    <div class="avatar-container">
+    <img *ngIf="message?.reciever?.profilePicture" [src]="'data:image/jpeg;base64,' + message?.reciever?.profilePicture" alt="User Avatar" class="avatar">
+    <img *ngIf="!message?.reciever?.profilePicture" src="assets/images/logo.svg" alt="User Avatar" class="avatar">
+    <div class="meta-text">
+      <strong>{{ message?.sender?.username }}</strong>
+      <span class="receiver">à : {{ message?.reciever?.username }}</span>
+    </div>
+  </div>
+    <div class="message-actions">
+      <button mat-icon-button class="delete-btn" (click)="openDeleteConfirmationDialog()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+ 
+ 
+
+  <div class="message-body">
+   
+   
+    <p>{{ message?.content }}</p>
+
+    <div *ngIf="signature" class="signature-container text-center">
+      <h5 class="signature-title">Signature</h5>
+      <p class="signature-name">{{ signature?.nom }}</p>
+      <img class="signature-img" [src]="'data:image/png;base64,' + signature" alt="Signature">
+    </div>
+  </div>
+
+ 
+</div>

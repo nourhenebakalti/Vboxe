@@ -1,0 +1,66 @@
+<div class="users-content">
+  <div class="button-container">
+    <button mat-icon-button class="custom-add-btn" (click)="onAdd()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="container flex flex-wrap col-md-12">
+    <table *ngIf="users && users.length > 0">
+      <thead>
+        <tr>
+          <th width="25%">Nom d’utilisateur</th>
+          <th>E-mail</th>
+          <th>Rôle</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let friend of users">
+          <td class="name-pic-profile-friend">
+            <div
+              class="pic"
+              [style.background-image]="
+                profilePicture
+                  ? 'url(data:image/png;base64,' + profilePicture(friend) + ')'
+                  : ''
+              "
+            >
+              <ng-container *ngIf="!profilePicture(friend)">{{
+                abrefName(friend)
+              }}</ng-container>
+            </div>
+            {{ friend.name }}
+          </td>
+          <td>{{ friend.username }}</td>
+          <td>{{ "STATUS." + friend.role | translate }}</td>
+          <td>{{ friend.status ? "Actif" : "Hors Ligne" }}</td>
+          <td>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="editEvent(friend)">
+                Modifier profile
+              </button>
+              <button mat-menu-item (click)="modifierPassWord(friend)">
+                Modifier password
+              </button>
+              <button mat-menu-item (click)="deleteUser(friend)">
+                Supprimer profile
+              </button>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="actions">
+      <button class="btn btn-secondary" (click)="cancel()">Annuler</button>
+    </div>
+    <div class="no_friends" *ngIf="!users || users.length === 0">
+      {{ "USERS_PAGE.NO_FREINDS" | translate }}
+    </div>
+  </div>
+</div>

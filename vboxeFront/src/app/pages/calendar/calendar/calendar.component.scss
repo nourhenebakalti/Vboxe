@@ -1,0 +1,91 @@
+// .calendar-content {
+//   margin-left: 256px;
+//   min-height: 100vh;
+//   .container {
+//     background-color: white;
+//     margin: 46px 36px;
+//     border-radius: 10px;
+//     position: relative;
+
+//     .footer {
+//       height: 100px;
+//     }
+
+//     .avatar {
+//       width: 64px;
+//       height: 64px;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       position: absolute;
+//       right: -8px;
+//       bottom: -9px;
+//     }
+//   }
+// }
+
+// mat-drawer-container {
+//   position: absolute;
+//   z-index: 1;
+//   display: block;
+//   overflow: hidden;
+//   width: 100%;
+//   height: 100%;
+//   border-radius: 10px;
+// }
+// .slide-user-invitation {
+//   width: 25%;
+//   background-color: #ccd8f4;
+//   height: 100%;
+// }
+// .slide-user-invitation-title {
+//   color: #5f5f5f;
+//   font-size: 29px;
+//   line-height: 16px;
+//   font-weight: 500;
+//   height: 62px;
+//   padding: 25px 25px;
+// }
+
+// ::ng-deep .mon-calendrier-personnalise .fc-day {
+//   border-bottom: none !important;
+// }
+// .fixe-content {
+//   position: sticky;
+//   top: 0;
+//   //z-index: 1;
+//   overflow: hidden;
+//   //position: fixed;
+// }
+// .notif-container {
+//   margin-top: 10px; /* Espace supplémentaire pour éviter le chevauchement avec le contenu fixe */
+//   //max-height: calc(100vh - 250px);
+//   overflow-y: auto; /* permet le scroll vertical */
+
+
+// }
+// .fixe-header {
+//   position: fixed; /* Make the header fixed */
+
+//   top: 0; /* Position it at the top */
+//   width: 100%; /* Take up full width */
+//   z-index: 1000; /* Ensure it's above other content */
+// }
+
+// .scrollable-content {
+//   position: relative;
+//   margin-top: 85px; /* Adjust according to your header height */
+//   width: 96%; /* Largeur du rectangle */
+//   padding-left: 38px;
+//   padding-top: 10px;
+//   //height: 70%; /* Hauteur du rectangle */
+// }
+
+// ::-webkit-scrollbar {
+//   width: 5px; /* Largeur de la scrollbar */
+// }
+
+// /* Pour changer la couleur de la scrollbar */
+// ::-webkit-scrollbar-thumb {
+//   background-color: #ccc; /* Couleur de la barre de défilement */
+// }

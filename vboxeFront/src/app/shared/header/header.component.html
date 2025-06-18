@@ -1,0 +1,90 @@
+<div class="header">
+  <div class="title">
+    {{ pageTitle | translate }}
+    <span *ngIf="temporary && pageTitle === 'MY_DOCUMENTS'" style="font-weight: 100; font-size: 20px;">
+      : Lien actif pour encore : {{ remainingTime }}
+    </span>  </div>
+
+  <div class="left">
+    <img src="/assets/images/message-square.svg" />
+    <!-- <button mat-icon-button (click)="openNotificationDialog()">
+      <img src="/assets/images/bell.svg" alt="Notifications" />
+    </button> -->
+    <div class="dropdown">
+      <div
+        class="position-relative"
+        id="dropdownMenuButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <!-- Bell Icon -->
+        <img class="dropdown-toggle bell" src="/assets/images/bell.svg" />
+        <!-- Notification Badge -->
+        <span
+          class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger"
+          *ngIf="notifList && notifList.length > 0"
+        >
+          {{ notifList.length }}
+        </span>
+      </div>
+
+      <!-- Dropdown Menu -->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li class="dropdown-item">
+          <div
+            class="d-flex align-items-start"
+            *ngFor="let notification of notifList"
+          >
+            <img
+              [src]="
+                notification.userImage
+                  ? 'data:image/png;base64,' + notification.userImage
+                  : '/assets/images/logo.svg'
+              "
+              alt="Notification Icon"
+              class="me-2"
+              style="width: 40px; height: 40px; border-radius: 50%"
+            />
+
+            <div>
+              <h6 class="mb-1">{{ notification.notif_title }}</h6>
+              <p class="mb-0 text-muted">{{ notification.notif_msg }}</p>
+            </div>
+          </div>
+        </li>
+        <hr class="dropdown-divider" />
+
+        <!-- Centered "Show All Notifications" -->
+        <li class="dropdown-item text-center">
+          <h6 class="clickable" (click)="openNotifications()">
+            Show all notifications
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="compte"
+      [style.background-image]="
+        profilePicture
+          ? 'url(data:image/png;base64,' + profilePicture + ')'
+          : ''
+      "
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
+      <ng-container *ngIf="!profilePicture">{{ abrefName }}</ng-container>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button class="profil-menu-item" mat-menu-item (click)="openProfile()">
+        Mon Compte
+      </button>
+      <button class="profil-menu-item" mat-menu-item (click)="manageProfile()">
+        Gérer profiles
+      </button>
+      <button class="profil-menu-item" mat-menu-item (click)="logout()">
+        Se déconnecter
+      </button>
+    </mat-menu>
+  </div>
+</div>

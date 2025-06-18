@@ -1,0 +1,161 @@
+.widget-container {
+    display: flex;
+    align-items: space-between;
+    column-gap: 10px;
+    justify-content: left;
+   
+    .widget {
+      max-width: 251px;
+      height: 100px;
+      background-color: white;
+      // background-color: #fff;
+      // color: #fff;
+      //border-radius: 5px;
+    
+      //box-shadow: 5px 5px 5px #939393;
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      
+      // &.green {
+      //   background-color: rgb(4, 67, 66);
+      // }
+      // &.yellow {
+      //   background-color: rgb(237, 158, 32);
+      // }
+      // &.red {
+      //   background-color: rgb(126, 5, 5);
+      // }
+      // &.blue {
+      //   background-color: rgb(105, 32, 251);
+      // }
+      @media only screen and (max-width: 1600px) {
+        width: 300px;
+      }
+      @media only screen and (max-width: 1500px) {
+        width: 275px;
+      }
+      @media only screen and (max-width: 1400px) {
+        width: 250px;
+      }
+      @media only screen and (max-width: 1200px) {
+        width: 225px;
+      }
+      .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+        background-color: #7babff;
+    }
+      .icon {
+        width: 100px;
+        font-size: 60px;
+        text-align: center;
+        
+        @media only screen and (max-width: 1200px) {
+          font-size: 45px;
+        }
+      }
+      .value {
+        text-align: left;
+        width: 175px;
+        .top {
+          font-size: 10px;
+         font-weight: 500;
+          color: #939393;
+          @media only screen and (max-width: 1200px) {
+            font-size: 26px;
+          }
+   
+        }
+        .bottom {
+          font-size: 10px;
+          margin-top: 10px;
+          @media only screen and (max-width: 1200px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .red-icon {
+      color: red;
+    }
+  
+   
+  //   .my-fab {
+  //     width: 20px;
+  //     height: 20px;
+  //     line-height: 16px;
+  
+  //     .mat-button-wrapper {
+  //          padding: 2px 0 !important;
+  //          line-height: 16px !important;
+  //          width: 16px !important;
+  //          height: 16px !important;
+  
+  //          .mat-icon {
+  //               font-size: 16px;
+  //               padding-right: 4px;
+  //               line-height: 16px;
+  //           }
+  //     }
+  // }
+  // button {
+  //   width: 30px;
+  //   height: 30px;
+  // }
+  
+  .ma_bouton{
+    float:right;
+    padding-top: 0px;
+  } 
+  }
+  /* Ensure the modal has a max width of 500px */
+::ng-deep .mat-dialog-container {
+  width: 500px !important;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the modal title */
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style for the content section */
+.modal-content {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+  padding: 10px 0;
+  margin-left: 20px;
+}
+
+/* Style for each statistics line */
+.stat-item {
+  margin: 10px 0;
+}
+
+/* Style for the action button section */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style for the close button */
+.close-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+  background-color: #0056b3;
+}

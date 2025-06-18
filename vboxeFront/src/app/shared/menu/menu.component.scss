@@ -1,0 +1,90 @@
+@import 'src/themes/theme.scss';
+
+.dashboard-menu {
+    width: 256px;
+    background-color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 10px 0px 13px #cccccc40;
+
+    .logo {
+        margin-left: 24px;
+        margin-top: 6px;
+    }
+
+    .menu-content {
+        margin-top: 20px;
+        padding-left: 37px;
+
+        &-item {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+
+            letter-spacing: 0.1px;
+
+            color: $--gray-dark;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+
+            span {
+                margin-left: 17px;
+            }
+        }
+
+        .selected {
+            color: #407BFF;
+            .mat-icon ::ng-deep {
+                svg {
+                    path{
+                        stroke: #407BFF;
+                    }
+                }
+            }
+        }
+    }
+
+    .sign-logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 35px;
+    }
+
+    .divider {
+        height: 0;
+        width: 100%;
+        border: 0.4px solid #E8E8E8;
+        margin-top: 35px;
+    }
+
+    .btn {
+        background-color: $--btn-back;
+        color: $--btn-text-color;
+        position: absolute;
+        width: 215px;
+        height: 35px;
+        left: 17px;
+        bottom: 35px;
+
+        border-radius: 6px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 32px;
+        border: unset;
+
+        img {
+            position: absolute;
+            left: 15px;
+            top: 9px;
+        }
+    }
+}

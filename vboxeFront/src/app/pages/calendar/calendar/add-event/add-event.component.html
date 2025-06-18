@@ -1,0 +1,101 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <!-- Contenu de la boîte de dialogue -->
+  <form [formGroup]="eventForm" (ngSubmit)="saveEvent()">
+    <h1 mat-dialog-title>Add Event</h1>
+    <div style="position: relative">
+      <span style="position: absolute; top: -40px; right: -10px">
+        <button mat-icon-button mat-dialog-close color="primary">
+          <mat-icon>close</mat-icon>
+        </button>
+      </span>
+    </div>
+    <div mat-dialog-content style="margin-top: 20px">
+      <mat-form-field>
+        <mat-label>title</mat-label>
+        <input matInput formControlName="title" placeholder="Titre" required />
+      </mat-form-field>
+      <!--  -->
+      <mat-form-field>
+        <mat-label>Guests</mat-label>
+        <mat-select formControlName="attendents" multiple>
+          <mat-option *ngFor="let user of users" [value]="user._id">
+            {{ user.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- si je vais encadrer le field j'ajoute apres mat-forl-field this option : appearance="outline" -->
+      <div class="date-hour">
+        <mat-form-field>
+          <mat-label>Start Date</mat-label>
+          <input
+            matInput
+            placeholder="Enter Start Date"
+            formControlName="start"
+            [matDatepicker]="startPicker"
+            required
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startPicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="date-hour">
+        <div class="date-hour-position" style="margin-right: 10px">
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="startHour"
+              placeholder=" Start Hour"
+              type="time"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="date-hour-position">
+        
+          <mat-form-field style="align-items: baseline">
+            <input
+              matInput
+              formControlName="endHour"
+              placeholder=" End Hour"
+              type="time"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-checkbox
+        class="example-margin"
+        [checked]="allDay"
+        (change)="toggleEndDate()"
+        >All day</mat-checkbox
+      >
+      <mat-form-field>
+        <mat-label>description</mat-label>
+        <input
+          matInput
+          placeholder="description"
+          formControlName="description"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions align="end">
+      <button
+        [class.spinner]=""
+        [disabled]=""
+        *ngIf="true"
+        type="submit"
+        class="full-width-button"
+        mat-raised-button
+        color="primary"
+        [disabled]="!eventForm.valid"
+      >
+        Save
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

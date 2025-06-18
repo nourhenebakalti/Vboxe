@@ -1,0 +1,60 @@
+.statistic-content {
+  margin-left: 256px;
+  position: relative;
+  min-height: 100vh;
+
+ .container {
+   max-width: 100%;
+  //    background-color:aqua;
+  height: 900px;
+     margin:  46px 36px 0px 0;
+      display: grid;
+    grid-template-columns: 773px 251px;
+    grid-template-rows: 100px 350px 350px;
+    gap : 10px;
+    padding-top: 50px;
+.top-section {
+  // background-color: green;
+  border-radius: 5px;
+  //margin: 10px;
+    grid-column: 1/-1;
+
+}
+
+  .widget {
+   
+    //margin: 10px;
+   
+    &.bottom {
+      width: auto;
+      // background-color: yellow;
+      background-color: white;
+      grid-row: 3/4;
+
+    }
+    &.right {
+      width: auto;
+      // background-color: rebeccapurple;
+      background-color: white;
+      grid-row: 2/4;
+      grid-column: 2/-1;
+
+    }
+    &.top {
+      width: auto;
+      overflow: auto;
+      background-color: white;
+
+    }
+  }
+
+  }
+  .fixe-header {
+    position: fixed; /* Make the header fixed */
+    top: 0; /* Position it at the top */
+    width: 100%; /* Take up full width */
+    z-index: 1000; /* Ensure it's above other content */
+  }
+
+}
+

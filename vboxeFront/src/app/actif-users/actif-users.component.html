@@ -1,0 +1,26 @@
+
+<div class="container">
+<mat-form-field class="right">
+    <input matInput [matDatepicker]="dp"  [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="month"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <mat-card  *ngFor="let user of users" >
+   
+    <mat-card-header></mat-card-header>
+    <mat-card-content style="margin-bottom: 4px;"> {{user?.name}} </mat-card-content>
+    <mat-card-content class="email" style="margin-bottom: 4px;">{{user?.username}}</mat-card-content>
+    <mat-card-actions>
+    <mat-progress-bar mode="determinate" value="2"></mat-progress-bar>
+    </mat-card-actions>
+    
+    <mat-card-footer style="font-size: small;">Nombre de jours connecté : {{user.jours}} </mat-card-footer>
+  </mat-card>
+  </div>
+  
+  

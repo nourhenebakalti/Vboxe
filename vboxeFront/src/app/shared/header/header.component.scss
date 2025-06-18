@@ -1,0 +1,78 @@
+.header {
+  background: #f6f8fb;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1.25687px solid #474d5622;
+
+  .title {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 46px;
+    letter-spacing: 0.2px;
+    color: #25282b;
+    margin-left: 31px;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    z-index: 1050 !important; /* Higher than other elements */
+  }
+  
+.dropdown-item{
+  cursor: pointer;
+  z-index: 1050;
+}
+.bell{
+  cursor:pointer
+}
+  .search {
+    background: #ffffff;
+    border-radius: 100px;
+    width: 408px;
+    height: 40px;
+    margin-left: 120px;
+  }
+  .left {
+    position: fixed;
+    right: 36px;
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 17px;
+    }
+    .compte {
+      width: 40px;
+      height: 40px;
+      background-color: #091e66;
+      border-radius: 50%;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid 4px #c9c9c9;
+      cursor: pointer;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+}
+
+::ng-deep .mat-menu-panel {
+  width: 180px !important;
+  margin-top: 10px;
+}
+
+.profil-menu-item {
+  display: flex !important;
+  justify-content: center !important;
+}
+::ng-deep .custom-dialog > mat-dialog-container {
+  background-color: transparent !important;
+  padding: unset !important;
+  box-shadow: unset !important;
+}

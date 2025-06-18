@@ -1,0 +1,62 @@
+
+  <div class="header">
+    <div class="center">Activité recente</div>
+    <div class="date-block__list">
+      <mat-form-field >
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startPicker" (dateChange)="onStartDateChange($event)" placeholder="Choose start date">
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+      </div>
+      <div class="date-block__list">
+      <mat-form-field >
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endPicker" (dateChange)="onEndDateChange($event)" placeholder="Choose end date">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+            
+  </div>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="Utilisateur">
+        <mat-header-cell *matHeaderCellDef class="user-column" > Utilisateur </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="user-column" > {{element.name}} </mat-cell>
+        <div></div>
+      </ng-container>
+      <ng-container matColumnDef="Email">
+        <mat-header-cell *matHeaderCellDef class="email-column" > E-mail </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="email-column" > {{element.username}} </mat-cell>
+        <div></div>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef class="date-column" > Date</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="date-column"  > {{(element.createdAt)| date:'mediumDate'}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Document">
+        <mat-header-cell *matHeaderCellDef class="document-column" > Document </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="document-column" ><button class ="filename" mat-flat-button (click)="redirectToPdfViewer(element.iddoc)"> {{element.fileName}}</button> </mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef class="auto-width"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="auto-width" > <button (click)="ondeleteshare(element.id)">Annuler</button> </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  

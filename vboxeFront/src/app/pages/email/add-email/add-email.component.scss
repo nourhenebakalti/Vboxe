@@ -1,0 +1,44 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Increased margin for better separation */
+}
+
+.card-body {
+    padding: 20px; /* Increased padding for better spacing */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased margin between form elements */
+}
+
+.button {
+    margin-top: 20px; /* Increased top margin for button group */
+    text-align: right; /* Align buttons to the right */
+}
+
+.imgSignature {
+    width: 100%; /* Adjusted width to fit container */
+    max-width: 200px; /* Added max-width for responsiveness */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure image is centered within its container */
+    margin: 0 auto; /* Center image horizontally */
+}
+
+.button button {
+    margin-right: 5px; /* Adds spacing between buttons */
+  }
+  
+
+.signature-info {
+    margin-bottom: 10px; /* Add margin bottom for spacing */
+  }
+  
+  .signature-info span {
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .signature-info p {
+    margin: 0; /* Remove default margin */
+  }
+  

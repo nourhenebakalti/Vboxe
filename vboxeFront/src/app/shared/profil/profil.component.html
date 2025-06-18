@@ -1,0 +1,49 @@
+<div class="profil-content">
+  <form [formGroup]="formGroup">
+  <div class="pic" (click)="openDialogSetImage(inputFile)" [style.background-image]="profilePicture ? 'url(data:image/png;base64,' + profilePicture + ')' : ''">
+    <ng-container *ngIf="!profilePicture">{{abrefName}}</ng-container>
+<input type="file" style="display: none;" (change)="setImage($event)" #inputFile accept="image/*">
+  </div>
+  <div class="actions">
+    <div (click)="updatUser()" class="actions-icon" *ngIf="edit">
+      <mat-icon>save</mat-icon>
+    </div>
+    <div class="actions-icon" (click)="closeDialog(false)">
+      <mat-icon>{{ !edit ? 'edit' : 'close'}}</mat-icon>
+    </div>
+  </div>
+ 
+    <div class="title">Mon profile</div>
+    <ng-container >
+      <div class="item-profil first">
+       <span class="label">NOM:</span> 
+       <ng-container *ngIf="!edit; else nameEdit" > {{ this.profile.name }} </ng-container>
+       <ng-template #nameEdit>
+        <input type="text" formControlName="name">
+       </ng-template>
+      </div>
+      <div class="item-profil">
+        <span class="label">TEL :</span> 
+        <ng-container *ngIf="!edit; else telEdit" > {{ this.profile.tel ? this.profile.tel : '-'}} </ng-container>
+       <ng-template #telEdit>
+        <input type="text" formControlName="tel">
+       </ng-template>
+      </div>
+      <div class="item-profil">
+        <span class="label">PROFFESSION:</span> <ng-container></ng-container> 
+        <ng-container *ngIf="!edit; else professionEdit" > {{ this.profile.profession ? this.profile.profession : '-'}} </ng-container>
+       <ng-template #professionEdit>
+        <input type="text" formControlName="profession">
+       </ng-template>
+      </div>
+      <div class="item-profil">
+        <span class="label">GROUP:</span> {{ this.profile.group }}
+        <ng-container *ngIf="!edit; else groupEdit" > {{ this.profile.group ? this.profile.group : '-'}} </ng-container>
+       <ng-template #groupEdit>
+        <input type="text" formControlName="group">
+       </ng-template>
+      </div>
+    </ng-container>
+
+  </form>
+</div>
